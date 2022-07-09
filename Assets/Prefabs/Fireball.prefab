@@ -101,6 +101,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _direction: 0
   _explosion: {fileID: 4390692347269172565, guid: 9d80dd853cfb7cc4e86963d9224cf1f4, type: 3}
+  _characterSheet: {fileID: 0}
+  _body: {fileID: 0}
+  _speedX: 26.7
+  _speedY: 26.6
 --- !u!50 &6216181142934856642
 Rigidbody2D:
   serializedVersion: 4
@@ -116,7 +120,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 10
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

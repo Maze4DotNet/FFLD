@@ -38,10 +38,12 @@ public class Move : MonoBehaviour
 
         if (_direction.x != 0)
         {
+            _agentState.IsWalking = true;
             _agentState.FacingDirection = Math.Sign(_direction.x);
             var scale = _transform.localScale;
             _transform.localScale = new Vector2(Math.Sign(_direction.x) * Math.Abs(_transform.localScale.x), scale.y);
         }
+        else _agentState.IsWalking = false;
     }
 
     private void FixedUpdate()
