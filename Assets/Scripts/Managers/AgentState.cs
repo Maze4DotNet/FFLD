@@ -20,6 +20,11 @@ namespace FFLD
         public bool IsCelebrating { get; set; }
         public bool IsTired { get; set; }
 
+        Animator animator;
+         // Use this for initialization
+        void Start () {
+            animator = GetComponent<Animator>();
+
         private Ground _ground;
 
         private void Awake()
@@ -37,6 +42,16 @@ namespace FFLD
             { 
                 _facingDirection = value; 
             }
+        }
+        private void Update(){
+            animator.SetBool("isWalking", IsWalking);
+            animator.SetBool("isDashing", IsDashing);
+            animator.SetBool("isAiborne", IsAirborne);
+            animator.SetBool("isAttacking", IsAttacking);
+            animator.SetBool("isDamaged", IsTakingDamage);
+            animator.SetBool("isDead", IsDead);
+            animator.SetBool("isCelebrating", IsCelebrating);
+            animator.SetBool("isTired", IsTired);
         }
     }
 }
