@@ -9,7 +9,7 @@ namespace FFLD
 {
     internal class SwordSlash : EnergyConsumingAction
     {
-        [SerializeField, Range(0f, 100f)] private float _attackDuration = 1f;
+        [SerializeField, Range(0f, 1f)] private float _attackDuration = 0.1f;
         public Transform _transform;
         public Animator _animator;
         public float _durationBoi = 0f;
