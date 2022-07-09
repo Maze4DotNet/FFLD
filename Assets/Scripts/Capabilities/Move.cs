@@ -42,7 +42,7 @@ namespace FFLD
             {
                 _agentState.FacingDirection = Math.Sign(_direction.x);
                 var scale = _transform.localScale;
-                _transform.localScale = new Vector2(_direction.x, scale.y);
+                _transform.localScale = new Vector2(Math.Sign(_direction.x) * Math.Abs(_transform.localScale.x)         , scale.y);
             }
         }
 
