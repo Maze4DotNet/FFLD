@@ -27,7 +27,10 @@ internal class CastSpell : EnergyConsumingAction
     {
         // cast de spellllll yo
         GameObject shotFireball = Instantiate(_fireball, this.transform.position, Quaternion.identity);
-        shotFireball.GetComponent<FireballBehavior>()._direction = _agentState.FacingDirection;
+        FireballBehavior behavior = shotFireball.GetComponent<FireballBehavior>();
+        behavior._direction = _agentState.FacingDirection;
+        behavior._characterSheet = _characterSheet;
+        behavior.DieEneNaAwake();
     }
 }
 
