@@ -10,8 +10,16 @@ namespace FFLD
     public class AgentState : MonoBehaviour
     {
         [SerializeField] private int _facingDirection = 1;
-        private bool _isDashing = false;
-        public bool IsDashing { get { return _isDashing; } set { _isDashing = value; } }
+
+        public bool IsDashing { get; set; }
+        public bool IsAirborne { get; set; }
+        public bool IsAttacking { get; set; }
+        public bool IsWalking { get; set; }
+        public bool IsTakingDamage { get; set; }
+        public bool IsDead { get; set; }
+        public bool IsCelebrating { get; set; }
+        public bool IsTired { get; set; }
+
         public int FacingDirection 
         {
             get
