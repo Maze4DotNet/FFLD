@@ -409,7 +409,7 @@ Animator:
   m_GameObject: {fileID: 571249039681519944}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e91dbcbc2f9bbf24c821cea219562834, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -533,13 +533,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSheet: {fileID: 571249039681519964}
   _agentState: {fileID: 571249039681519965}
-  _attackDuration: 0.4
+  _attackDuration: 0.1
   _transform: {fileID: 571249040728584708}
   _animator: {fileID: 7855839078184661871}
   _durationBoi: 0
   _currentAttackDirection: 0
-  _currentRotation: {x: 0, y: 0, z: 0, w: 0}
   _currentFacingDirection: 0
+  _defaultRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!95 &7855839078184661871
 Animator:
   serializedVersion: 4
