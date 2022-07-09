@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Shinjingi
+namespace FFLD
 {
     public class Ground : MonoBehaviour
     {
@@ -43,7 +43,7 @@ namespace Shinjingi
 
             Friction = 0;
 
-            if(_material != null)
+            if (_material != null)
             {
                 Friction = _material.friction;
             }

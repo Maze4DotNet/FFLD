@@ -1,7 +1,9 @@
 using UnityEngine;
+using System;
 
-namespace Shinjingi
+namespace FFLD
 {
+
     [RequireComponent(typeof(Controller))]
     public class Move : MonoBehaviour
     {
@@ -13,6 +15,8 @@ namespace Shinjingi
         private Vector2 _direction, _desiredVelocity, _velocity;
         private Rigidbody2D _body;
         private Ground _ground;
+        public AgentState _agentState;
+        public CharacterSheet _characterSheet;
 
         private float _maxSpeedChange, _acceleration;
         private bool _onGround;
@@ -27,7 +31,11 @@ namespace Shinjingi
         private void Update()
         {
             _direction.x = _controller.input.RetrieveMoveInput();
+            if (_characterSheet.Energy == 0) _direction.x = 0f;
+
             _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
+
+            if (_direction.x != 0) _agentState.FacingDirection = Math.Sign(_direction.x);
         }
 
         private void FixedUpdate()
