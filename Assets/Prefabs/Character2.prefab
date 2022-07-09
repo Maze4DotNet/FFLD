@@ -348,6 +348,7 @@ MonoBehaviour:
   _energyRechargeTime: 0.05
   _rechargeCounter: 0
   _rechargeFactor: 1
+  _agentState: {fileID: 571249039681519965}
 --- !u!114 &571249039681519967
 MonoBehaviour:
   m_ObjectHideFlags: 0

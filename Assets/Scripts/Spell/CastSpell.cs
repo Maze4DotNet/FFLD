@@ -5,16 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace FFLD
+internal class CastSpell : MonoBehaviour
 {
-    internal class CastSpell : MonoBehaviour
-    {
-        public AgentState _agentState;
-        Rigidbody2D _body;
+    public AgentState _agentState;
+    Rigidbody2D _body;
 
-        private void Awake()
-        {
-            
-        }
+    private void Awake()
+    {
+
     }
 }
+
