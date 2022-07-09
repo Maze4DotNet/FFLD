@@ -16,7 +16,7 @@ namespace FFLD
         [SerializeField, Range(0, 10)] private int _rechargeCounter = 0;
         [SerializeField, Range(0, 10)] private int _rechargeFactor = 1;
 
-
+        public AgentState _agentState;
         private int _rechargeMax = 10;
         private float _time = 0;
 
@@ -106,7 +106,11 @@ namespace FFLD
             }
             _rechargeCounter = 0;
             Energy--;
-            if (Energy == 0) _rechargeFactor = 2;
+            if (Energy == 0)
+            {
+                _rechargeFactor = 2;
+                _agentState.IsTired = true;
+            }
         }
 
         public void IncreaseEnergy()
@@ -118,6 +122,7 @@ namespace FFLD
 
             // If the recharge counter is at 10, gain an energy cell.
             if (_rechargeCounter < _rechargeMax) return;
+            _agentState.IsTired = false;
 
             _rechargeFactor = 1;
             Energy = System.Math.Min(EnduranceLevel + 1, Energy + 1);
