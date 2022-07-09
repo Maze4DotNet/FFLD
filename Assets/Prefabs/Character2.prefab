@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: -2925569363372825563}
   m_Layer: 0
   m_Name: Character2
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSheet: {fileID: 571249039681519964}
   _agentState: {fileID: 571249039681519965}
+  _fireball: {fileID: 7333670108544459525, guid: b48123cb3ec46b2458e5cbc15f8f26d8, type: 3}
 --- !u!1 &571249040728584711
 GameObject:
   m_ObjectHideFlags: 0
