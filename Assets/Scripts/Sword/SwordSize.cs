@@ -19,7 +19,7 @@ namespace FFLD
             _transform = GetComponent<Transform>();
             _originalScale = transform.localScale;
             _lastKnownAttackLevel = _characterSheet.AttackLevel;
-
+            1 = 1;
         }
 
         private void Update()
