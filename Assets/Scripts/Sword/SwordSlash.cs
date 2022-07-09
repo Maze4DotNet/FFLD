@@ -14,6 +14,9 @@ internal class SwordSlash : EnergyConsumingAction
     public float _currentAttackDirection = 0f;
     public int _currentFacingDirection;
     public Quaternion _defaultRotation;
+    private float _translationFactorX = 0.05f;
+    private float _translationFactorY = 0.6f;
+
 
     private void Awake()
     {
@@ -36,11 +39,14 @@ internal class SwordSlash : EnergyConsumingAction
 
     private void PerformSlash()
     {
+        if (_agentState.IsAttacking) return;
+
         Debug.Log(_transform.rotation);
 
         _agentState.IsAttacking = true;
         _currentFacingDirection = _agentState.FacingDirection;
-        _transform.Translate(0.13f, 0.073f, 0f);
+
+        _transform.Translate(_translationFactorX, _translationFactorY, 0f);
 
         _durationBoi = 0f;
         _currentAttackDirection = 1f;
@@ -58,6 +64,6 @@ internal class SwordSlash : EnergyConsumingAction
         _agentState.IsAttacking = false;
         Debug.Log($"Duration: {_durationBoi}");
         _transform.eulerAngles = new Vector3(0, 0, _agentState.FacingDirection * -33.538f);
-        _transform.Translate(-0.13f, -0.073f, 0f);
+        _transform.Translate(-_translationFactorX, -_translationFactorY, 0f);
     }
 }

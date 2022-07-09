@@ -9,7 +9,7 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 5)] private int _magicLevel = 5;
 
     [SerializeField, Range(0, 5)] private int _hp = 5;
-    [SerializeField, Range(0, 6)] private int _energy = 6;
+    [SerializeField, Range(0, 12)] private int _energy = 12;
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
     [SerializeField, Range(0, 10)] private int _rechargeCounter = 0;
     [SerializeField, Range(0, 10)] private int _rechargeFactor = 1;
@@ -113,7 +113,8 @@ public class CharacterSheet : MonoBehaviour
 
     public void IncreaseEnergy()
     {
-        if (Energy == EnduranceLevel + 1) return;
+        var max = 2 * (EnduranceLevel + 1);
+        if (Energy == max) return;
 
         // Increase the recharge counter.
         _rechargeCounter = System.Math.Min(_rechargeMax, _rechargeCounter + 1);
@@ -123,7 +124,7 @@ public class CharacterSheet : MonoBehaviour
         _agentState.IsTired = false;
 
         _rechargeFactor = 1;
-        Energy = System.Math.Min(EnduranceLevel + 1, Energy + 1);
+        Energy = System.Math.Min(max, Energy + 1);
         _rechargeCounter = 0;
     }
     #endregion METHODS
