@@ -1,9 +1,6 @@
 using UnityEngine;
 
-namespace FFLD
+public class Controller : MonoBehaviour
 {
-    public class Controller : MonoBehaviour
-    {
-        public InputController input = null;
-    }
+    public InputController input = null;
 }

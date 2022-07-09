@@ -1,72 +1,69 @@
 using UnityEngine;
 
-namespace FFLD
+
+[RequireComponent(typeof(Controller))]
+public class Jump : EnergyConsumingAction
 {
+    [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;
+    [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
+    [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
 
-    [RequireComponent(typeof(Controller))]
-    public class Jump : EnergyConsumingAction
+    public bool IsAirborne { get { return !_ground.OnGround; } }
+
+    private Rigidbody2D _body;
+    private Ground _ground;
+    private Vector2 _velocity;
+
+    private float _defaultGravityScale, _jumpSpeed;
+
+
+    // Start is called before the first frame update
+    void Awake()
     {
-        [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;
-        [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
-        [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
+        _body = GetComponent<Rigidbody2D>();
+        _ground = GetComponent<Ground>();
+        _actionName = "Jump";
+        _action = () => JumpAction();
 
-        public bool IsAirborne { get { return !_ground.OnGround; } }
+        _defaultGravityScale = 1f;
+    }
 
-        private Rigidbody2D _body;
-        private Ground _ground;
-        private Vector2 _velocity;
+    private void FixedUpdate()
+    {
+        _velocity = _body.velocity;
 
-        private float _defaultGravityScale, _jumpSpeed;
+        base.FixedUpdate();
 
-
-        // Start is called before the first frame update
-        void Awake()
+        if (_body.velocity.y > 0)
         {
-            _body = GetComponent<Rigidbody2D>();
-            _ground = GetComponent<Ground>();
-            _actionName = "Jump";
-            _action = () => JumpAction();
-
-            _defaultGravityScale = 1f;
+            _body.gravityScale = _upwardMovementMultiplier;
+        }
+        else if (_body.velocity.y < 0)
+        {
+            _body.gravityScale = _downwardMovementMultiplier;
+        }
+        else if (_body.velocity.y == 0)
+        {
+            _body.gravityScale = _defaultGravityScale;
         }
 
-        private void FixedUpdate()      
+        _body.velocity = _velocity;
+    }
+
+    private void JumpAction()
+    {
+        Debug.Log("jump action invoked");
+
+        _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
+
+        if (_velocity.y > 0f)
         {
-            _velocity = _body.velocity;
-
-            base.FixedUpdate();
-
-            if (_body.velocity.y > 0)
-            {
-                _body.gravityScale = _upwardMovementMultiplier;
-            }
-            else if (_body.velocity.y < 0)
-            {
-                _body.gravityScale = _downwardMovementMultiplier;
-            }
-            else if (_body.velocity.y == 0)
-            {
-                _body.gravityScale = _defaultGravityScale;
-            }
-
-            _body.velocity = _velocity;
+            _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
         }
-
-        private void JumpAction()
+        else if (_velocity.y < 0f)
         {
-            Debug.Log("jump action invoked");
-
-            _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
-
-            if (_velocity.y > 0f)
-            {
-                _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
-            }
-            else if (_velocity.y < 0f)
-            {
-                _jumpSpeed += Mathf.Abs(_body.velocity.y);
-            }
-            _velocity.y += _jumpSpeed;
+            _jumpSpeed += Mathf.Abs(_body.velocity.y);
         }
+        _velocity.y += _jumpSpeed;
     }
 }

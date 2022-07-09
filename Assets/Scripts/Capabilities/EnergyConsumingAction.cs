@@ -5,44 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace FFLD
+public abstract class EnergyConsumingAction : MonoBehaviour
 {
-    public abstract class EnergyConsumingAction : MonoBehaviour
+    internal string _actionName;
+    internal Action _action;
+
+    public CharacterSheet _characterSheet;
+    public AgentState _agentState;
+    private bool _desiredAction = false;
+
+    internal void Update()
     {
-        internal string _actionName;
-        internal Action _action;
+        _desiredAction |= Input.GetButtonDown(_actionName);
+    }
 
-        public CharacterSheet _characterSheet;
-        public AgentState _agentState;
-        private bool _desiredAction = false;
-
-        internal void Update()
+    internal void FixedUpdate()
+    {
+        if (_desiredAction)
         {
-            _desiredAction |= Input.GetButtonDown(_actionName);
+            _desiredAction = false;
+            PerformAction();
         }
+    }
 
-        internal void FixedUpdate()
+    virtual internal void PerformAction()
+    {
+        Debug.Log(
+            $"Action: {_actionName}\n" +
+            $"Energy: {_characterSheet.Energy}");
+
+        if (_characterSheet.Energy == 0)
         {
-            if (_desiredAction)
-            {
-                _desiredAction = false;
-                PerformAction();
-            }
+            Debug.Log("No energy to perform action!");
+            return;
         }
-
-        virtual internal void PerformAction()
-        {
-            Debug.Log(
-                $"Action: {_actionName}\n" +
-                $"Energy: {_characterSheet.Energy}");
-
-            if (_characterSheet.Energy == 0)
-            {
-                Debug.Log("No energy to perform action!");
-                return;
-            }
-            _characterSheet.DecreaseEnergy(_actionName);
-            _action.Invoke();
-        }
+        _characterSheet.DecreaseEnergy(_actionName);
+        _action.Invoke();
     }
 }
