@@ -12,7 +12,7 @@ namespace FFLD
         [SerializeField] private int _facingDirection = 1;
 
         public bool IsDashing { get; set; }
-        public bool IsAirborne { get; set; }
+        public bool IsAirborne { get { return !_ground.OnGround; } }
         public bool IsAttacking { get; set; }
         public bool IsWalking { get; set; }
         public bool IsTakingDamage { get; set; }
@@ -24,6 +24,12 @@ namespace FFLD
          // Use this for initialization
         void Start () {
             animator = GetComponent<Animator>();
+
+        private Ground _ground;
+
+        private void Awake()
+        {
+            _ground = GetComponent<Ground>();
         }
 
         public int FacingDirection 
