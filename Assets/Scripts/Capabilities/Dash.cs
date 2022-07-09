@@ -7,8 +7,6 @@ namespace FFLD
     [RequireComponent(typeof(Controller))]
     public class Dash : EnergyConsumingAction
     {
-        public bool IsDashing { get; private set; }
-
         private Rigidbody2D _body;
         private Vector2 _velocity;
 
