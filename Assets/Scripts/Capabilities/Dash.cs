@@ -26,6 +26,7 @@ namespace FFLD
         private void DashAction()
         {
             IsDashing = true;
+            _agentState
             _velocity = _body.velocity;
             _body.gravityScale = 0;
             _velocity.x += _dashPower * _agentState.FacingDirection;
