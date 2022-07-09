@@ -5,13 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-internal class CastSpell : MonoBehaviour
+internal class CastSpell : EnergyConsumingAction
 {
-    public AgentState _agentState;
     Rigidbody2D _body;
 
     private void Awake()
     {
+        _action = () => PerformSpell();
+        _actionName = "Spell";
+    }
+
+    private void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        // whatever er verder moet gebeuren
+    }
+
+    private void PerformSpell()
+    {
+        // cast de spellllll yo
 
     }
 }
