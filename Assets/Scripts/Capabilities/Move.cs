@@ -17,6 +17,8 @@ namespace FFLD
         private Ground _ground;
         public AgentState _agentState;
         public CharacterSheet _characterSheet;
+        public Transform _transform;
+        public GameObject _player;
 
         private float _maxSpeedChange, _acceleration;
         private bool _onGround;
@@ -26,6 +28,7 @@ namespace FFLD
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
             _controller = GetComponent<Controller>();
+            _transform = GetComponent<Transform>();
         }
 
         private void Update()
@@ -35,7 +38,12 @@ namespace FFLD
 
             _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
 
-            if (_direction.x != 0) _agentState.FacingDirection = Math.Sign(_direction.x);
+            if (_direction.x != 0)
+            {
+                _agentState.FacingDirection = Math.Sign(_direction.x);
+                var scale = _transform.localScale;
+                _transform.localScale = new Vector2(_direction.x, scale.y);
+            }
         }
 
         private void FixedUpdate()

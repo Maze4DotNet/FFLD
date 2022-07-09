@@ -11,14 +11,13 @@ namespace FFLD
         [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
         [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
 
-        private Controller _controller;
+        public bool IsAirborne { get { return !_ground.OnGround; } }
+
         private Rigidbody2D _body;
         private Ground _ground;
         private Vector2 _velocity;
 
         private float _defaultGravityScale, _jumpSpeed;
-
-        private bool _desiredJump, _onGround;
 
 
         // Start is called before the first frame update
@@ -26,7 +25,6 @@ namespace FFLD
         {
             _body = GetComponent<Rigidbody2D>();
             _ground = GetComponent<Ground>();
-            _controller = GetComponent<Controller>();
             _actionName = "Jump";
             _action = () => JumpAction();
 
@@ -38,11 +36,6 @@ namespace FFLD
             _velocity = _body.velocity;
 
             base.FixedUpdate();
-
-            if (_agentState.IsDashing)
-            {
-
-            }
 
             if (_body.velocity.y > 0)
             {
