@@ -27,7 +27,9 @@ public class EnemyMove : MonoBehaviour
 
     private void Update()
     {
+
         _direction.x = _enemyController._direction;
+        if (_agentState.IsTakingDamage) _direction.x = 0;
         _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
 
         if (_direction.x != 0)

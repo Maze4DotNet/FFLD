@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-internal class PlayerHitBox:MonoBehaviour
+internal class PlayerHitBox : MonoBehaviour
 {
     public CharacterSheet _characterSheet;
     public AgentState _agentState;
@@ -25,7 +25,12 @@ internal class PlayerHitBox:MonoBehaviour
     {
         var otherObject = collision.gameObject;
         if (!otherObject.name.Contains("Goblin")) return;
-        _characterSheet.TakeDamage(otherObject);
+
+        int damage;
+        if (otherObject.name.Contains("Weapon")) damage = otherObject.GetComponent<GoblinWeaponScript>()._damage;
+        else damage = otherObject.GetComponent<GoblinType>()._damage;
+
+        _characterSheet.TakeDamage(otherObject, damage);
 
     }
 }
