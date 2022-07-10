@@ -260,6 +260,7 @@ MonoBehaviour:
   _jumpHeight: 3
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
+  _transform: {fileID: 5053631827066466524}
 --- !u!114 &6845100197947379395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,4 +279,3 @@ MonoBehaviour:
   _weaponType: 0
   _agentState: {fileID: 1401703340124926837}
   _weapon: {fileID: 8583766317174271309, guid: d0950579e109de041a54fe2e4cde1806, type: 3}
-
