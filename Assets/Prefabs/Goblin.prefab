@@ -238,7 +238,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _direction: 0
+  _roamDirection: 0
   _transform: {fileID: 0}
+  _agentState: {fileID: 1401703340124926837}
 --- !u!114 &6515711349379316457
 MonoBehaviour:
   m_ObjectHideFlags: 0
