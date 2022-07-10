@@ -7,8 +7,13 @@ public class Dash : EnergyConsumingAction
     private Rigidbody2D _body;
     private Vector2 _velocity;
 
-    private float _dashPower = 20f;
-    private float _dashLength = 1f;
+    [SerializeField, Range(1f, 100f)] private float _dashPowerXGroundFactor = 1f;
+    [SerializeField, Range(0f, 100f)] private float _dashPowerX = 20f;
+    [SerializeField, Range(0f, 100f)] private float _dashPowerY = 0;
+    [SerializeField, Range(0f, 1f)] private float _dashLength = 0.3f;
+
+
+
 
     // Start is called before the first frame update
     void Awake()
@@ -22,17 +27,23 @@ public class Dash : EnergyConsumingAction
     {
         _agentState.IsDashing = true;
         _velocity = _body.velocity;
-        _body.gravityScale = 0;
-        _velocity.x += _dashPower * _agentState.FacingDirection;
+        _velocity.y = 0f;
+        //_body.gravityScale = 0;
+
+        var xDashPower = _dashPowerX * _agentState.FacingDirection;
+        var yDashPower = _dashPowerY;
+
+        if (!_agentState.IsAirborne) xDashPower *= _dashPowerXGroundFactor;
+
+        _velocity.x += xDashPower;
+        _velocity.y += yDashPower;
         Invoke("DashEnds", _dashLength);
-        _agentState.IsDashing = true;
         _body.velocity = _velocity;
     }
 
     private void DashEnds()
     {
-        _agentState.IsDashing = false;
-        _body.gravityScale = 1;
+        //_body.gravityScale = 1;
         _agentState.IsDashing = false;
     }
 }

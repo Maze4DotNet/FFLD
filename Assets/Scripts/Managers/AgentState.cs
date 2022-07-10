@@ -12,6 +12,8 @@ public class AgentState : MonoBehaviour
     public bool IsDashing { get; set; }
     public bool IsAirborne { get { return !_ground.OnGround; } }
     public bool IsAttacking { get; set; }
+    public bool IsCasting { get; set; }
+    public bool IsSwinging { get; set; }
     public bool IsWalking { get; set; }
     public bool IsTakingDamage { get; set; }
     public bool IsDead { get; set; }
