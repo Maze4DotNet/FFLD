@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CharacterSheet : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CharacterSheet : MonoBehaviour
 
     [SerializeField, Range(0, 6)] private int _hp = 6;
     [SerializeField, Range(0, 12)] private int _energy = 12;
+
+
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
     [SerializeField, Range(0, 10)] private int _rechargeCounter = 0;
     [SerializeField, Range(0, 10)] private int _rechargeFactor = 1;
@@ -19,6 +22,10 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 100)] private int _mana = 100;
     [SerializeField, Range(0, 10)] private int _manaRechargeFactor = 1;
 
+    [SerializeField, Range(0f, 100f)] private float _invincibilityDuration;
+    [SerializeField, Range(0f, 100f)] private float _knockBackX;
+    [SerializeField, Range(0f, 100f)] private float _knockBackY;
+
     private int _currentRechargeFactor = 1;
 
     public AgentState _agentState;
@@ -26,6 +33,7 @@ public class CharacterSheet : MonoBehaviour
     private float _energyTime = 0;
     private float _manaTime = 0;
 
+    public Rigidbody2D _body;
 
     #endregion FIELDS
 
@@ -104,6 +112,42 @@ public class CharacterSheet : MonoBehaviour
     #endregion PROPERTIES
 
     #region METHODS
+    internal void TakeDamage(GameObject otherObject)
+    {
+        if (_agentState.IsInvincible) return;
+        _hp--;
+        if (_hp == 0)
+        {
+            _agentState.IsDead = true;
+            //doodgaan
+            return;
+        }
+
+        int flyDir;
+        var otherPos = otherObject.transform.position;
+        var myPos = gameObject.transform.position;
+        if (otherPos.x > myPos.x) flyDir = -1;
+        else flyDir = 1;
+
+        var newVelocity = new Vector2(flyDir*_knockBackX, _knockBackY);
+        _body.velocity += newVelocity;
+
+        _agentState.IsTakingDamage = true;
+        _agentState.IsInvincible = true;
+        Invoke("TakingDamageEnds", _invincibilityDuration);
+    }
+
+    public void TakingDamageEnds()
+    {
+        _agentState.IsTakingDamage = false;
+        Invoke("InvincibilityEnds", _invincibilityDuration);
+    }
+
+    public void InvincibilityEnds()
+    {
+        _agentState.IsInvincible = false;
+    }
+
     private void Update()
     {
         _energyTime += Time.deltaTime;

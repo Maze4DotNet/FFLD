@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5853702598273940260}
   - component: {fileID: 1484931872327483244}
   - component: {fileID: 6515711349379316457}
+  - component: {fileID: 6845100197947379395}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Enemies
@@ -213,6 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _facingDirection: 1
+  _isPlayer: 0
 --- !u!114 &5853702598273940260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +243,8 @@ MonoBehaviour:
   _roamDirection: 0
   _transform: {fileID: 0}
   _agentState: {fileID: 1401703340124926837}
+  _type: {fileID: 6845100197947379395}
+  _reloadTime: 1
 --- !u!114 &6515711349379316457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,4 +260,22 @@ MonoBehaviour:
   _jumpHeight: 3
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
-  _transform: {fileID: 5053631827066466524}
+--- !u!114 &6845100197947379395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82cf9eeef0fef8542a802f7c743a3ea9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _size: 0
+  _hp: 0
+  _damage: 0
+  _weaponType: 0
+  _agentState: {fileID: 1401703340124926837}
+  _weapon: {fileID: 8583766317174271309, guid: d0950579e109de041a54fe2e4cde1806, type: 3}
+
