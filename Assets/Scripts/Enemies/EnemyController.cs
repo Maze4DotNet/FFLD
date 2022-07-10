@@ -10,6 +10,10 @@ public class EnemyController : MonoBehaviour
     private GameObject _player;
     public Transform _transform;
     public AgentState _agentState;
+    public GoblinType _type;
+    [SerializeField, Range(0f, 100f)] private float _reloadTime;
+    private bool _reloading = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -24,10 +28,23 @@ public class EnemyController : MonoBehaviour
         var xDifference = _player.transform.position.x - _transform.position.x;
         var yDifference = _player.transform.position.y - _transform.position.y;
 
-        if(xDifference > -1 && xDifference < 1 && yDifference > -1 && yDifference < 1 && _state == 1)
+        float attackableDistanceX;
+
+        if (_type._weaponType == 0) attackableDistanceX = 100;
+        else attackableDistanceX = 1;
+
+        if (_agentState.IsAttacking)
+        {
+            _direction = 0;
+            return;
+        }
+
+        if (!_reloading && xDifference > -1 * attackableDistanceX && xDifference < 1 * attackableDistanceX && yDifference > -1 && yDifference < 1 && _state == 1)
         {
             //doe hier aanval dinge
             _agentState.IsAttacking = true;
+            _type.Attack();
+            Invoke("ReloadWeapon", _reloadTime);
         }
         else
         {
@@ -43,7 +60,7 @@ public class EnemyController : MonoBehaviour
             }
             else if (_state == 1)
             {
-                if(_player.transform.position.x > _transform.position.x)
+                if (_player.transform.position.x > _transform.position.x)
                 {
                     _direction = 1;
                 }
@@ -54,6 +71,19 @@ public class EnemyController : MonoBehaviour
             }
         }
     }
+
+    public void ReloadWeapon()
+    {
+        Invoke("EndReloadWeapon", _reloadTime);
+        _agentState.IsAttacking = false;
+        _reloading = true;
+    }
+
+    public void EndReloadWeapon()
+    {
+        _reloading = false;
+    }
+
     IEnumerator Roaming()
     {
         _roamDirection = randomDirection();
@@ -63,7 +93,7 @@ public class EnemyController : MonoBehaviour
     private float randomDirection()
     {
         float val = Random.Range(-1f, 1f);
-        if(val > 0)
+        if (val > 0)
         {
             return 1f;
         }

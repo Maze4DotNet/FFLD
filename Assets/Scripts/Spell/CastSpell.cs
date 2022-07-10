@@ -37,7 +37,8 @@ internal class CastSpell : EnergyConsumingAction
 
         _agentState.IsAttacking = true;
         _agentState.IsCasting = true;
-        GameObject shotFireball = Instantiate(_fireball, this.transform.position, Quaternion.identity);
+        var pos = this.transform.position + new Vector3(_agentState.FacingDirection*0.5f,0);
+        GameObject shotFireball = Instantiate(_fireball, pos, Quaternion.identity);
         FireballBehavior behavior = shotFireball.GetComponent<FireballBehavior>();
         behavior._direction = _agentState.FacingDirection;
         behavior._characterSheet = _characterSheet;

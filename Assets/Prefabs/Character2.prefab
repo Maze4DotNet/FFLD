@@ -103,6 +103,7 @@ GameObject:
   - component: {fileID: 546854923440101215}
   - component: {fileID: 207690383348040960}
   - component: {fileID: 6022328106121779785}
+  - component: {fileID: 3342978714215156359}
   m_Layer: 0
   m_Name: Character2
   m_TagString: Player
@@ -425,7 +426,7 @@ MonoBehaviour:
   _attackLevel: 5
   _defenseLevel: 5
   _enduranceLevel: 5
-  _magicLevel: 0
+  _magicLevel: 5
   _hp: 6
   _energy: 12
   _energyRechargeTime: 0.1
@@ -435,7 +436,11 @@ MonoBehaviour:
   _manaRechargeTime: 0.03
   _mana: 100
   _manaRechargeFactor: 1
+  _invincibilityDuration: 0
+  _knockBackX: 0
+  _knockBackY: 0
   _agentState: {fileID: 571249039681519965}
+  _body: {fileID: 571249039681519938}
 --- !u!114 &571249039681519967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +472,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _facingDirection: 1
+  _isPlayer: 1
 --- !u!111 &571249039681519962
 Animation:
   m_ObjectHideFlags: 0
@@ -597,6 +603,20 @@ MonoBehaviour:
   _magicMeterSprite: {fileID: 21300000, guid: fd8ece2f6b54544489e67c17a75a7539, type: 3}
   _manaValueSprite: {fileID: 21300000, guid: afe6d371e4cb50346bca3bd7981288a7, type: 3}
   _nothing: {fileID: 21300000, guid: 89b68b198e5be64448273ffeec414bed, type: 3}
+--- !u!114 &3342978714215156359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571249039681519944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bef998e943c9745a064a051a5ed763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterSheet: {fileID: 571249039681519964}
+  _agentState: {fileID: 571249039681519965}
 --- !u!1 &571249040728584711
 GameObject:
   m_ObjectHideFlags: 0

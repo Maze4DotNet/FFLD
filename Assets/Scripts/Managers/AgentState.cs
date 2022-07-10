@@ -8,6 +8,7 @@ using UnityEngine;
 public class AgentState : MonoBehaviour
 {
     [SerializeField] private int _facingDirection = 1;
+    [SerializeField] private bool _isPlayer = true;
 
     public bool IsDashing { get; set; }
     public bool IsAirborne { get { return !_ground.OnGround; } }
@@ -54,13 +55,18 @@ public class AgentState : MonoBehaviour
             _facingDirection = value;
         }
     }
+
+    public bool IsInvincible { get; internal set; }
+
     private void Update()
     {
         _animator.SetBool("isWalking", IsWalking);
-        _animator.SetBool("isDashing", IsDashing);
-        _animator.SetBool("isAirborne", IsAirborne);
         _animator.SetBool("isAttacking", IsAttacking);
+        _animator.SetBool("isAirborne", IsAirborne);
         _animator.SetBool("isDamaged", IsTakingDamage);
+
+        if (!_isPlayer) return;
+        _animator.SetBool("isDashing", IsDashing);
         _animator.SetBool("isDead", IsDead);
         _animator.SetBool("isCelebrating", IsCelebrating);
         _animator.SetBool("isTired", IsTired);
