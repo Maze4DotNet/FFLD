@@ -27,5 +27,6 @@ public class SwordSize : MonoBehaviour
             float factor = (1f + _lastKnownAttackLevel) / 6f;
             _transform.localScale = new Vector3(_originalScale.x * factor, _originalScale.y * factor);
         }
+        if (_characterSheet.Hp <= 0) Destroy(gameObject);
     }
 }
