@@ -59,7 +59,12 @@ public class Jump : EnergyConsumingAction
 
     private void JumpAction()
     {
-        if (_jumpPhase >= _airJumps) return;
+        if (_jumpPhase >= _airJumps)
+        {
+            _successful = false;
+            return;
+        }
+
         _jumpPhase++;
 
         _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);

@@ -13,6 +13,8 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
     [SerializeField, Range(0, 10)] private int _rechargeCounter = 0;
     [SerializeField, Range(0, 10)] private int _rechargeFactor = 1;
+    [SerializeField, Range(0, 10)] private int _rechargeFactorTired = 3;
+    private int _currentRechargeFactor = 1;
 
     public AgentState _agentState;
     private int _rechargeMax = 10;
@@ -88,15 +90,17 @@ public class CharacterSheet : MonoBehaviour
     {
         _time += Time.deltaTime;
 
-        if (_time > _rechargeFactor * _energyRechargeTime)
+        if (_time > _currentRechargeFactor * _energyRechargeTime)
         {
             _time = 0;
             IncreaseEnergy();
         }
     }
 
-    public void DecreaseEnergy(string caller)
+    public void DecreaseEnergy(string caller, bool successful)
     {
+        if (!successful) return;
+
         if (Energy == 0)
         {
             Debug.Log($"WARNING:\n{caller} tried to decrease energy below 0.");
@@ -106,7 +110,7 @@ public class CharacterSheet : MonoBehaviour
         Energy--;
         if (Energy == 0)
         {
-            _rechargeFactor = 2;
+            _currentRechargeFactor = _rechargeFactorTired;
             _agentState.IsTired = true;
         }
     }
@@ -123,7 +127,7 @@ public class CharacterSheet : MonoBehaviour
         if (_rechargeCounter < _rechargeMax) return;
         _agentState.IsTired = false;
 
-        _rechargeFactor = 1;
+        _currentRechargeFactor = _rechargeFactor;
         Energy = System.Math.Min(max, Energy + 1);
         _rechargeCounter = 0;
     }

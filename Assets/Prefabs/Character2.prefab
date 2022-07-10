@@ -166,8 +166,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.36}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.1, y: 0.3}
+  m_EdgeRadius: 0.12
 --- !u!96 &571249039681519942
 TrailRenderer:
   serializedVersion: 2
@@ -347,10 +347,11 @@ MonoBehaviour:
   _enduranceLevel: 5
   _magicLevel: 5
   _hp: 5
-  _energy: 6
-  _energyRechargeTime: 0.05
-  _rechargeCounter: 0
+  _energy: 12
+  _energyRechargeTime: 0.1
+  _rechargeCounter: 10
   _rechargeFactor: 1
+  _rechargeFactorTired: 3
   _agentState: {fileID: 571249039681519965}
 --- !u!114 &571249039681519967
 MonoBehaviour:

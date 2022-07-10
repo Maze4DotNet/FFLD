@@ -25,6 +25,8 @@ public class Dash : EnergyConsumingAction
 
     private void DashAction()
     {
+        if (_agentState.CantMove || _agentState.IsDashing) return;
+
         _agentState.IsDashing = true;
         _velocity = _body.velocity;
         _velocity.y = 0f;

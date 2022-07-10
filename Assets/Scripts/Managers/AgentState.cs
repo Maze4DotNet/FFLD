@@ -20,6 +20,19 @@ public class AgentState : MonoBehaviour
     public bool IsCelebrating { get; set; }
     public bool IsTired { get; set; }
 
+    public bool CantMove
+    {
+        get
+        {
+            return
+                IsTired ||
+                IsAttacking ||
+                IsDead ||
+                IsTakingDamage;
+        }
+    }
+
+
     private Animator _animator;
 
     private Ground _ground;
@@ -43,13 +56,13 @@ public class AgentState : MonoBehaviour
     }
     private void Update()
     {
-        _animator.SetBool("isWalking"       , IsWalking);
-        _animator.SetBool("isDashing"       , IsDashing);
-        _animator.SetBool("isAirborne"      , IsAirborne);
-        _animator.SetBool("isAttacking"     , IsAttacking);
-        _animator.SetBool("isDamaged"       , IsTakingDamage);
-        _animator.SetBool("isDead"          , IsDead);
-        _animator.SetBool("isCelebrating"   , IsCelebrating);
-        _animator.SetBool("isTired"         , IsTired);
+        _animator.SetBool("isWalking", IsWalking);
+        _animator.SetBool("isDashing", IsDashing);
+        _animator.SetBool("isAirborne", IsAirborne);
+        _animator.SetBool("isAttacking", IsAttacking);
+        _animator.SetBool("isDamaged", IsTakingDamage);
+        _animator.SetBool("isDead", IsDead);
+        _animator.SetBool("isCelebrating", IsCelebrating);
+        _animator.SetBool("isTired", IsTired);
     }
 }
