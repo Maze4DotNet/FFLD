@@ -1537,6 +1537,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1755492342094241519}
   - component: {fileID: 346138937223590818}
+  - component: {fileID: 4009195906297930868}
   m_Layer: 0
   m_Name: Menu Manager
   m_TagString: Untagged
@@ -1576,6 +1577,19 @@ MonoBehaviour:
   _endLevelText: {fileID: 3554520408406506922}
   _magLevelText: {fileID: 6692286354958098804}
   _timeToClose: 0
+--- !u!114 &4009195906297930868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299810323704139363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbba61ed34552b44f9054c9ea2b0aa4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _menuUI: {fileID: 0}
 --- !u!1 &4335551375456384678
 GameObject:
   m_ObjectHideFlags: 0
