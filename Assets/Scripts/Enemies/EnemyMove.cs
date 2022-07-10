@@ -22,6 +22,7 @@ public class EnemyMove : MonoBehaviour
         _body = GetComponent<Rigidbody2D>();
         _ground = GetComponent<Ground>();
         _transform = GetComponent<Transform>();
+        _enemyController = GetComponent<EnemyController>();
     }
 
     private void Update()
