@@ -7,7 +7,8 @@ using UnityEngine;
 
 internal class SwordSlash : EnergyConsumingAction
 {
-    [SerializeField, Range(0f, 1f)] private float _attackDuration = 0.1f;
+    [SerializeField, Range(0.0001f, 1f)] private float _attackDuration = 0.1f;
+    [SerializeField, Range(0f, 10000f)] private float _attackSpeed = 300f;
     public Transform _transform;
     public Animator _animator;
     public float _durationBoi = 0f;
@@ -28,9 +29,9 @@ internal class SwordSlash : EnergyConsumingAction
     {
         base.FixedUpdate();
 
-        if (_agentState.IsAttacking)
+        if (_agentState.IsSwinging)
         {
-            var speed = -1000f * _currentAttackDirection;
+            var speed = -_attackSpeed / _attackDuration * _currentAttackDirection;
             Vector3 rotation = new Vector3(0, 0, speed) * Time.deltaTime;
             _transform.Rotate(rotation);
             _durationBoi += Time.deltaTime;
@@ -44,25 +45,40 @@ internal class SwordSlash : EnergyConsumingAction
         Debug.Log(_transform.rotation);
 
         _agentState.IsAttacking = true;
+        _agentState.IsSwinging = true;
         _currentFacingDirection = _agentState.FacingDirection;
 
         _transform.Translate(_translationFactorX, _translationFactorY, 0f);
 
         _durationBoi = 0f;
+        _currentAttackDirection = 0f;
+        Invoke("StartSlash", 0.2f * _attackDuration);
+
+    }
+
+    private void StartSlash()
+    {
         _currentAttackDirection = 1f;
-        Invoke("HalfSlash", _attackDuration);
+        Invoke("PauseSlash", 0.4f * _attackDuration);
+
+    }
+
+    private void PauseSlash()
+    {
+        _currentAttackDirection = 0f;
+        Invoke("HalfSlash", 0.2f * _attackDuration);
     }
 
     private void HalfSlash()
     {
         _currentAttackDirection = -2f;
-        Invoke("EndSlash", 0.5f * _attackDuration);
+        Invoke("EndSlash", 0.2f * _attackDuration);
     }
 
     private void EndSlash()
     {
         _agentState.IsAttacking = false;
-        Debug.Log($"Duration: {_durationBoi}");
+        _agentState.IsSwinging = false;
         _transform.eulerAngles = new Vector3(0, 0, _agentState.FacingDirection * -33.538f);
         _transform.Translate(-_translationFactorX, -_translationFactorY, 0f);
     }

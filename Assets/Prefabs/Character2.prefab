@@ -279,9 +279,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b61068da20533d5418b1b22ca9b86571, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 17
+  _maxSpeed: 6
   _maxAcceleration: 85
-  _maxAirAcceleration: 50
+  _maxAirAcceleration: 7
   _agentState: {fileID: 571249039681519965}
   _characterSheet: {fileID: 571249039681519964}
   _transform: {fileID: 0}
@@ -303,6 +303,8 @@ MonoBehaviour:
   _jumpHeight: 10
   _downwardMovementMultiplier: 5
   _upwardMovementMultiplier: 3.5
+  _airJumps: 1
+  _jumpPhase: 0
 --- !u!114 &571249039681519966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +366,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSheet: {fileID: 571249039681519964}
   _agentState: {fileID: 571249039681519965}
+  _dashPowerXGroundFactor: 1
+  _dashPowerX: 15
+  _dashPowerY: 0
+  _dashLength: 0.3
 --- !u!114 &571249039681519965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +442,7 @@ MonoBehaviour:
   _characterSheet: {fileID: 571249039681519964}
   _agentState: {fileID: 571249039681519965}
   _fireball: {fileID: 7333670108544459525, guid: b48123cb3ec46b2458e5cbc15f8f26d8, type: 3}
+  _attackDuration: 0.5
 --- !u!1 &571249040728584711
 GameObject:
   m_ObjectHideFlags: 0
@@ -449,6 +456,7 @@ GameObject:
   - component: {fileID: 571249040728584706}
   - component: {fileID: 8457379016818466215}
   - component: {fileID: 7855839078184661871}
+  - component: {fileID: 1940535845228233437}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -550,7 +558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSheet: {fileID: 571249039681519964}
   _agentState: {fileID: 571249039681519965}
-  _attackDuration: 0.1
+  _attackDuration: 0.5
+  _attackSpeed: 350
   _transform: {fileID: 571249040728584708}
   _animator: {fileID: 7855839078184661871}
   _durationBoi: 0
@@ -577,3 +586,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1940535845228233437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571249040728584711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 079c10045c6dcd048a24a83283a56520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agentState: {fileID: 571249039681519965}

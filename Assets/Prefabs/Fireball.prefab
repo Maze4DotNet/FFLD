@@ -103,8 +103,8 @@ MonoBehaviour:
   _explosion: {fileID: 4390692347269172565, guid: 9d80dd853cfb7cc4e86963d9224cf1f4, type: 3}
   _characterSheet: {fileID: 0}
   _body: {fileID: 0}
-  _speedX: 26.7
-  _speedY: 26.6
+  _speedX: 15
+  _speedY: 25
 --- !u!50 &6216181142934856642
 Rigidbody2D:
   serializedVersion: 4

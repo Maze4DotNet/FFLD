@@ -32,7 +32,17 @@ public class Move : MonoBehaviour
     private void Update()
     {
         _direction.x = _controller.input.RetrieveMoveInput();
-        if (_characterSheet.Energy == 0) _direction.x = 0f;
+
+        bool cantMove =
+            _agentState.IsTired ||
+            _agentState.IsAttacking ||
+            _agentState.IsDead ||
+            _agentState.IsTakingDamage;
+
+        if (cantMove)
+        {
+            _direction.x = 0f;
+        }
 
         _desiredVelocity = new Vector2(_direction.x, 0f) * Mathf.Max(_maxSpeed - _ground.Friction, 0f);
 
@@ -48,7 +58,7 @@ public class Move : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _onGround = _ground.OnGround;
+        _onGround = _ground.OnGround && !_agentState.IsDashing;
         _velocity = _body.velocity;
 
         _acceleration = _onGround ? _maxAcceleration : _maxAirAcceleration;
