@@ -33,13 +33,7 @@ public class Move : MonoBehaviour
     {
         _direction.x = _controller.input.RetrieveMoveInput();
 
-        bool cantMove =
-            _agentState.IsTired ||
-            _agentState.IsAttacking ||
-            _agentState.IsDead ||
-            _agentState.IsTakingDamage;
-
-        if (cantMove)
+        if (_agentState.CantMove)
         {
             _direction.x = 0f;
         }

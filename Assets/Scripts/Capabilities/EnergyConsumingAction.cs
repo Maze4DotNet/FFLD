@@ -14,6 +14,8 @@ public abstract class EnergyConsumingAction : MonoBehaviour
     public AgentState _agentState;
     private bool _desiredAction = false;
 
+    internal bool _successful = true;
+
     internal void Update()
     {
         _desiredAction |= Input.GetButtonDown(_actionName);
@@ -21,11 +23,10 @@ public abstract class EnergyConsumingAction : MonoBehaviour
 
     internal void FixedUpdate()
     {
-        if (_desiredAction)
-        {
-            _desiredAction = false;
-            PerformAction();
-        }
+        if (!_desiredAction) return;
+        _desiredAction = false;
+        if (_agentState.CantMove) return;
+        PerformAction();
     }
 
     virtual internal void PerformAction()
@@ -39,7 +40,8 @@ public abstract class EnergyConsumingAction : MonoBehaviour
             Debug.Log("No energy to perform action!");
             return;
         }
-        _characterSheet.DecreaseEnergy(_actionName);
         _action.Invoke();
+        _characterSheet.DecreaseEnergy(_actionName, _successful);
+        _successful = true;
     }
 }
