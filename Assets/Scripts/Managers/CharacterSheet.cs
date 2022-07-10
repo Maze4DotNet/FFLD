@@ -20,11 +20,17 @@ public class CharacterSheet : MonoBehaviour
 
     [SerializeField, Range(0, 3)] private float _manaRechargeTime;
     [SerializeField, Range(0, 100)] private int _mana = 100;
-    [SerializeField, Range(0, 10)] private int _manaRechargeFactor = 1;
+    [SerializeField, Range(0, 10)] private int _manaRechargeFactor = 1; 
 
     [SerializeField, Range(0f, 100f)] private float _invincibilityDuration;
     [SerializeField, Range(0f, 100f)] private float _knockBackX;
     [SerializeField, Range(0f, 100f)] private float _knockBackY;
+
+    [SerializeField, Range(0, 10)] public int _inexperiencePoints = 0;
+    [SerializeField, Range(0, 100)] public int _requiredPoints = 10;
+
+
+
 
     private int _currentRechargeFactor = 1;
 
@@ -137,6 +143,11 @@ public class CharacterSheet : MonoBehaviour
         Invoke("TakingDamageEnds", _invincibilityDuration);
     }
 
+    internal void GainInexperience()
+    {
+        _inexperiencePoints++;
+    }
+
     public void TakingDamageEnds()
     {
         _agentState.IsTakingDamage = false;
@@ -166,6 +177,16 @@ public class CharacterSheet : MonoBehaviour
             _manaTime = 0;
             IncreaseMana();
         }
+
+        if (_inexperiencePoints >= _requiredPoints)
+        {
+            LevelDown();
+        }
+    }
+
+    private void LevelDown()
+    {
+        _inexperiencePoints = 0;
     }
 
     public void DecreaseEnergy(string caller, bool successful)
