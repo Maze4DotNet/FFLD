@@ -260,7 +260,7 @@ MonoBehaviour:
   _jumpHeight: 3
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
-  _transform: {fileID: 0}
+  _transform: {fileID: 5053631827066466524}
 --- !u!114 &6845100197947379395
 MonoBehaviour:
   m_ObjectHideFlags: 0

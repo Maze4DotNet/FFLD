@@ -5,16 +5,18 @@ using TMPro;
 
 public class DownGradeManager : MonoBehaviour
 {
-    public GameObject _player;
+    private GameObject _player;
     private CharacterSheet _characterSheet;
     public TextMeshProUGUI _atkLevelText;
     public TextMeshProUGUI _dfsLevelText;
     public TextMeshProUGUI _endLevelText;
     public TextMeshProUGUI _magLevelText;
     private bool _canChoose = true;
+    public float _timeToClose = 0.0f;
 
     void Awake()
     {
+        _player = GameObject.FindGameObjectWithTag("Player");
         _characterSheet = _player.GetComponent<CharacterSheet>();
     }
     void Update()
@@ -26,34 +28,41 @@ public class DownGradeManager : MonoBehaviour
     }
     public void decrAttack()
     {
-        if(_characterSheet.AttackLevel > 0)
-            {
-                _characterSheet.AttackLevel --;
-                _canChoose = false;
-            }
+        if(_characterSheet.AttackLevel > 0 && _canChoose)
+        {
+            _characterSheet.AttackLevel --;
+            _canChoose = false;
+            Invoke("CloseMenu", _timeToClose);
+        }
     }
     public void decrDefense()
     {
-        if(_characterSheet.DefenseLevel > 0)
+        if(_characterSheet.DefenseLevel > 0 && _canChoose)
         {
             _characterSheet.DefenseLevel --;
             _canChoose = false;
+            Invoke("CloseMenu", _timeToClose);
         }
     }
     public void decrEndure()
     {
-        if(_characterSheet.EnduranceLevel > 0)
+        if(_characterSheet.EnduranceLevel > 0 && _canChoose)
         {
             _characterSheet.EnduranceLevel --;
             _canChoose = false;
+            Invoke("CloseMenu", _timeToClose);
         }
     }
     public void decrMagic()
     {
-        if(_characterSheet.MagicLevel > 0)
+        if(_characterSheet.MagicLevel > 0 && _canChoose)
         {
             _characterSheet.MagicLevel --;
             _canChoose = false;
+            Invoke("CloseMenu", _timeToClose);
         }
+    }
+    void CloseMenu(){
+        Destroy(transform.parent.gameObject);
     }
 }
