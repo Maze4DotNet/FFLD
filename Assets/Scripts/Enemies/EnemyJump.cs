@@ -13,6 +13,8 @@ public class EnemyJump : MonoBehaviour
     private Rigidbody2D _body;
     private Ground _ground;
     private Vector2 _velocity;
+    public Transform _transform;
+    private GameObject _player;
 
     private float _defaultGravityScale, _jumpSpeed;
 
@@ -22,7 +24,7 @@ public class EnemyJump : MonoBehaviour
     {
         _body = GetComponent<Rigidbody2D>();
         _ground = GetComponent<Ground>();
-
+        _player = GameObject.FindGameObjectWithTag("Player");
         _defaultGravityScale = 1f;
     }
 
@@ -46,18 +48,22 @@ public class EnemyJump : MonoBehaviour
         _body.velocity = _velocity;
     }
 
-    private void JumpAction()
+    public void JumpAction()
     {
-        _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
+        if(_player.transform.position.y > _transform.position.y + 1)
+        {
+            _jumpSpeed = Mathf.Sqrt(-2f * Physics2D.gravity.y * _jumpHeight);
 
-        if (_velocity.y > 0f)
-        {
-            _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
+            if (_velocity.y > 0f)
+            {
+                _jumpSpeed = Mathf.Max(_jumpSpeed - _velocity.y, 0f);
+            }
+            else if (_velocity.y < 0f)
+            {
+                _jumpSpeed += Mathf.Abs(_body.velocity.y);
+            }
+            _velocity.y += _jumpSpeed;
+            _body.velocity = _velocity;
         }
-        else if (_velocity.y < 0f)
-        {
-            _jumpSpeed += Mathf.Abs(_body.velocity.y);
-        }
-        _velocity.y += _jumpSpeed;
     }
 }
