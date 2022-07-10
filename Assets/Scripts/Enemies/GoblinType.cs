@@ -56,7 +56,7 @@ public class GoblinType : MonoBehaviour
         var render = gameObject.GetComponent<SpriteRenderer>();
         float die = 0.1f;
         float dat = die * (toughness - 1);
-        render.material.color += new Color(dat, dat, dat);
+        //render.material.color += new Color(dat, dat, dat);
 
     }
 
