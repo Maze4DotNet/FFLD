@@ -4,11 +4,11 @@ public class CharacterSheet : MonoBehaviour
 {
     #region FIELDS
     [SerializeField, Range(0, 5)] private int _attackLevel = 5;
-    [SerializeField, Range(1, 5)] private int _defenseLevel = 5;
+    [SerializeField, Range(0, 5)] private int _defenseLevel = 5;
     [SerializeField, Range(0, 5)] private int _enduranceLevel = 5;
     [SerializeField, Range(0, 5)] private int _magicLevel = 5;
 
-    [SerializeField, Range(0, 5)] private int _hp = 5;
+    [SerializeField, Range(0, 6)] private int _hp = 6;
     [SerializeField, Range(0, 12)] private int _energy = 12;
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
     [SerializeField, Range(0, 10)] private int _rechargeCounter = 0;
@@ -95,6 +95,8 @@ public class CharacterSheet : MonoBehaviour
             _time = 0;
             IncreaseEnergy();
         }
+
+        if (_hp > _defenseLevel + 1) _hp = _defenseLevel + 1;
     }
 
     public void DecreaseEnergy(string caller, bool successful)
