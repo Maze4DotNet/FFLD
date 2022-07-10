@@ -14,11 +14,17 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 10)] private int _rechargeCounter = 0;
     [SerializeField, Range(0, 10)] private int _rechargeFactor = 1;
     [SerializeField, Range(0, 10)] private int _rechargeFactorTired = 3;
+
+    [SerializeField, Range(0, 3)] private float _manaRechargeTime;
+    [SerializeField, Range(0, 100)] private int _mana = 100;
+    [SerializeField, Range(0, 10)] private int _manaRechargeFactor = 1;
+
     private int _currentRechargeFactor = 1;
 
     public AgentState _agentState;
     private int _rechargeMax = 10;
-    private float _time = 0;
+    private float _energyTime = 0;
+    private float _manaTime = 0;
 
 
     #endregion FIELDS
@@ -83,20 +89,39 @@ public class CharacterSheet : MonoBehaviour
             _hp = value;
         }
     }
+
+    public int Mana
+    {
+        get
+        {
+            return _mana;
+        }
+        set
+        {
+            _mana = value;
+        }
+    }
     #endregion PROPERTIES
 
     #region METHODS
     private void Update()
     {
-        _time += Time.deltaTime;
+        _energyTime += Time.deltaTime;
+        _manaTime += Time.deltaTime;
 
-        if (_time > _currentRechargeFactor * _energyRechargeTime)
+        if (_energyTime > _currentRechargeFactor * _energyRechargeTime)
         {
-            _time = 0;
+            _energyTime = 0;
             IncreaseEnergy();
         }
 
         if (_hp > _defenseLevel + 1) _hp = _defenseLevel + 1;
+
+        if (Mana < 100 && _manaTime > _manaRechargeFactor * _manaRechargeTime)
+        {
+            _manaTime = 0;
+            IncreaseMana();
+        }
     }
 
     public void DecreaseEnergy(string caller, bool successful)
@@ -132,6 +157,11 @@ public class CharacterSheet : MonoBehaviour
         _currentRechargeFactor = _rechargeFactor;
         Energy = System.Math.Min(max, Energy + 1);
         _rechargeCounter = 0;
+    }
+
+    public void IncreaseMana()
+    {
+        Mana++;
     }
     #endregion METHODS
 }
