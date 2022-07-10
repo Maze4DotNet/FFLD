@@ -27,7 +27,13 @@ internal class CastSpell : EnergyConsumingAction
     private void PerformSpell()
     {
         // cast de spellllll yo
-        if (_agentState.IsAttacking == true) return;
+        if (_agentState.IsAttacking == true || _characterSheet.Mana != 100 || _characterSheet.MagicLevel == 0)
+        {
+            _successful = false;
+            return;
+        }
+
+        _characterSheet.Mana = 0;
 
         _agentState.IsAttacking = true;
         _agentState.IsCasting = true;
