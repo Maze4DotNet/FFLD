@@ -180,8 +180,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.15, y: 0.36}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.1, y: 0.3}
+  m_EdgeRadius: 0.12
 --- !u!114 &1350747454698620722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,3 +256,4 @@ MonoBehaviour:
   _jumpHeight: 3
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
+  _transform: {fileID: 5053631827066466524}
