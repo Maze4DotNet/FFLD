@@ -6,11 +6,13 @@ public class EnemyController : MonoBehaviour
 {
     public float _direction;
     private int _state = 1; //0 = roaming, 1 = chasing
-    public GameObject _player;
+    private GameObject _player;
+    public Transform _transform;
     // Start is called before the first frame update
     void Awake()
     {
-        
+        _transform = GetComponent<Transform>();
+        _player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -22,7 +24,14 @@ public class EnemyController : MonoBehaviour
         }
         else if (_state == 1)
         {
-            _direction = -1;
+            if(_player.transform.position.x > _transform.position.x)
+            {
+                _direction = 1;
+            }
+            else
+            {
+                _direction = -1;
+            }
         }
     }
 }
