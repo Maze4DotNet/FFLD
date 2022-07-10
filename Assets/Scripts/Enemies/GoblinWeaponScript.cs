@@ -19,16 +19,18 @@ public class GoblinWeaponScript:MonoBehaviour
     private GoblinType _goblinType;
     private int _weaponType;
     private int _direction;
+    public int _damage;
     [SerializeField, Range(0f, 50f)] private float _lifeTime = 2f;
 
     public GoblinType Type { get { return _goblinType; } set { _goblinType = value; } }
 
-    public void Initialize(GameObject goblinObject, GoblinType goblinType, int weaponType, int direction)
+    public void Initialize(GameObject goblinObject, GoblinType goblinType, int weaponType, int direction, int damage)
     {
         _goblinObject = goblinObject;
         _goblinType = goblinType;
         _weaponType = weaponType;
         _direction = direction;
+        _damage = damage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,6 +43,12 @@ public class GoblinWeaponScript:MonoBehaviour
             {
                 var sheet = otherObject.GetComponent<CharacterSheet>();
                 sheet.TakeDamage(gameObject);
+            }
+            else if (otherObject.name.Contains("Trigger")) return;
+            else if (otherObject.name.Contains("Sword"))
+            {
+                SwordSlash swordSlash = otherObject.GetComponent<SwordSlash>();
+                if (!swordSlash.IsAttacking) return;
             }
             Destroy(gameObject);
         }

@@ -436,9 +436,9 @@ MonoBehaviour:
   _manaRechargeTime: 0.03
   _mana: 100
   _manaRechargeFactor: 1
-  _invincibilityDuration: 0
-  _knockBackX: 0
-  _knockBackY: 0
+  _invincibilityDuration: 1
+  _knockBackX: 10
+  _knockBackY: 5
   _agentState: {fileID: 571249039681519965}
   _body: {fileID: 571249039681519938}
 --- !u!114 &571249039681519967
@@ -631,6 +631,7 @@ GameObject:
   - component: {fileID: 8457379016818466215}
   - component: {fileID: 7855839078184661871}
   - component: {fileID: 1940535845228233437}
+  - component: {fileID: 2807081204773681421}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -740,6 +741,7 @@ MonoBehaviour:
   _currentAttackDirection: 0
   _currentFacingDirection: 0
   _defaultRotation: {x: 0, y: 0, z: 0, w: 0}
+  IsAttacking: 0
 --- !u!95 &7855839078184661871
 Animator:
   serializedVersion: 4
@@ -773,6 +775,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _agentState: {fileID: 571249039681519965}
+--- !u!61 &2807081204773681421
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571249040728584711}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.23}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 0.15, y: 0.4}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.09, y: 0.35}
+  m_EdgeRadius: 0
 --- !u!1 &1883576980088666540
 GameObject:
   m_ObjectHideFlags: 0

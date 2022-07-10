@@ -112,11 +112,11 @@ public class CharacterSheet : MonoBehaviour
     #endregion PROPERTIES
 
     #region METHODS
-    internal void TakeDamage(GameObject otherObject)
+    internal void TakeDamage(GameObject otherObject, int damage)
     {
         if (_agentState.IsInvincible) return;
-        _hp--;
-        if (_hp == 0)
+        _hp-= damage;
+        if (_hp <= 0)
         {
             _agentState.IsDead = true;
             //doodgaan

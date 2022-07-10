@@ -17,6 +17,7 @@ internal class SwordSlash : EnergyConsumingAction
     public Quaternion _defaultRotation;
     private float _translationFactorX = 0.05f;
     private float _translationFactorY = 0.6f;
+    public bool IsAttacking = false;
 
 
     private void Awake()
@@ -36,12 +37,13 @@ internal class SwordSlash : EnergyConsumingAction
             _transform.Rotate(rotation);
             _durationBoi += Time.deltaTime;
         }
+        else IsAttacking = false;
     }
 
     private void PerformSlash()
     {
         if (_agentState.IsAttacking) return;
-
+        IsAttacking = true;
         Debug.Log(_transform.rotation);
 
         _agentState.IsAttacking = true;

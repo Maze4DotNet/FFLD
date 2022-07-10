@@ -30,6 +30,8 @@ public class EnemyJump : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (GetComponent<AgentState>().IsTakingDamage) return;
+
         _velocity = _body.velocity;
 
         if (_body.velocity.y > 0)
