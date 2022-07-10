@@ -103,4 +103,9 @@ public class EnemyController : MonoBehaviour
             return -1f;
         }
     }
+
+    private void OnDestroy()
+    {
+        _player.GetComponent<CharacterSheet>().GainInexperience();
+    }
 }

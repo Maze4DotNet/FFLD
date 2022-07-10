@@ -74,6 +74,7 @@ public class GoblinType : MonoBehaviour
 
     private void Die()
     {
+        
         Destroy(gameObject);
     }
 

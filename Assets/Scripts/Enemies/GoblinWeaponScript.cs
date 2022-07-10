@@ -42,7 +42,7 @@ public class GoblinWeaponScript:MonoBehaviour
             if (otherObject.name.Contains("Character"))
             {
                 var sheet = otherObject.GetComponent<CharacterSheet>();
-                sheet.TakeDamage(gameObject);
+                sheet.TakeDamage(gameObject,_damage);
             }
             else if (otherObject.name.Contains("Trigger")) return;
             else if (otherObject.name.Contains("Sword"))
