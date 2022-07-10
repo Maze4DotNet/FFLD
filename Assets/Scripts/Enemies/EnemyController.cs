@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (_agentState.IsTakingDamage) return;
         var xDifference = _player.transform.position.x - _transform.position.x;
         var yDifference = _player.transform.position.y - _transform.position.y;
 
