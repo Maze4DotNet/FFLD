@@ -14,6 +14,11 @@ GameObject:
   - component: {fileID: 2082567913534353797}
   - component: {fileID: 3049594955417233160}
   - component: {fileID: 7264373382607994611}
+  - component: {fileID: 1350747454698620722}
+  - component: {fileID: 1401703340124926837}
+  - component: {fileID: 5853702598273940260}
+  - component: {fileID: 1484931872327483244}
+  - component: {fileID: 6515711349379316457}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Untagged
@@ -128,7 +133,7 @@ Rigidbody2D:
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!68 &3049594955417233160
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -145,8 +150,8 @@ EdgeCollider2D:
   m_Offset: {x: -0.03, y: -0.18}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.20000003, y: 0}
-  - {x: 0.20000003, y: 0}
+  - {x: 0.13, y: -0.02}
+  - {x: -0.03, y: -0.02}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -177,3 +182,74 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.15, y: 0.36}
   m_EdgeRadius: 0
+--- !u!114 &1350747454698620722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5cef1c612fe2074282ba40d423341d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxSpeed: 4
+  _maxAcceleration: 35
+  _maxAirAcceleration: 20
+  _transform: {fileID: 5053631827066466524}
+  _enemyController: {fileID: 1484931872327483244}
+  _agentState: {fileID: 1401703340124926837}
+--- !u!114 &1401703340124926837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f283b092b3e52bc48ad1c765087a7646, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _facingDirection: 1
+--- !u!114 &5853702598273940260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d7adda04be63514aba0781b42364b50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1484931872327483244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b193743341af5204ca9ae1560205c43b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _direction: 0
+--- !u!114 &6515711349379316457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18dd7d87df35aa14ab77380f73f8b18b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpHeight: 3
+  _downwardMovementMultiplier: 3
+  _upwardMovementMultiplier: 1.7
