@@ -13,15 +13,17 @@ internal class PlayerHitBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        CollisionHandler(collision);
+        var otherObject = collision.gameObject;
+        if (!otherObject.name.Contains("Goblin")) return;
+
+        int damage;
+        if (otherObject.name.Contains("Weapon")) damage = otherObject.GetComponent<GoblinWeaponScript>()._damage;
+        else damage = otherObject.GetComponent<GoblinType>()._damage;
+
+        _characterSheet.TakeDamage(otherObject, damage);
     }
 
-    private void OnTriggerEnter2D(Collision2D collision)
-    {
-        CollisionHandler(collision);
-    }
-
-    private void CollisionHandler(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         var otherObject = collision.gameObject;
         if (!otherObject.name.Contains("Goblin")) return;
@@ -31,6 +33,5 @@ internal class PlayerHitBox : MonoBehaviour
         else damage = otherObject.GetComponent<GoblinType>()._damage;
 
         _characterSheet.TakeDamage(otherObject, damage);
-
     }
 }

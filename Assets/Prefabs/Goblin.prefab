@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5cef1c612fe2074282ba40d423341d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxSpeed: 4
+  _maxSpeed: 2
   _maxAcceleration: 35
   _maxAirAcceleration: 20
   _transform: {fileID: 5053631827066466524}
@@ -277,8 +277,8 @@ MonoBehaviour:
   _hp: 2
   _damage: 1
   _invincibilityPeriod: 1
-  _knockBackX: 10
-  _knockBackY: 5
+  _knockBackX: 15
+  _knockBackY: 10
   _weaponType: 0
   _agentState: {fileID: 1401703340124926837}
   _body: {fileID: 2082567913534353797}

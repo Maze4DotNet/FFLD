@@ -32,6 +32,7 @@ public class FireballBehavior : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.name.Contains("Trigger")) return;
+        if (other.name.Contains("Sword")) return;
         if (other.tag != "Player")
         {
             Destroy(gameObject);

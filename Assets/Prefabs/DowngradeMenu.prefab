@@ -1503,11 +1503,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ffc5a34fadb8ad49bb75aa11ee2d61c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
   _atkLevelText: {fileID: 8407906666320745755}
   _dfsLevelText: {fileID: 2321981915741314379}
   _endLevelText: {fileID: 3554520408406506922}
   _magLevelText: {fileID: 6692286354958098804}
+  _timeToClose: 0
 --- !u!1 &4335551375456384678
 GameObject:
   m_ObjectHideFlags: 0
