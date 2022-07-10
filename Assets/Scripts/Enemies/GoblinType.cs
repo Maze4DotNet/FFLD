@@ -10,8 +10,8 @@ public class GoblinType : MonoBehaviour
     [SerializeField, Range(0, 6)] public int _damage;
     [SerializeField, Range(0f, 100f)] public float _invincibilityPeriod;
     [SerializeField, Range(0f, 100f)] public float _knockBackX;
-    [SerializeField, Range(0f,100f)] public float _knockBackY;
-
+    [SerializeField, Range(0f, 100f)] public float _knockBackY;
+    private GoblinSpawnScript _spawnScript;
     /// <summary>
     /// 0 for dagger, 1 for sword.
     /// </summary>
@@ -45,7 +45,20 @@ public class GoblinType : MonoBehaviour
         weaponScript.Attack();
     }
 
+    internal void WhosYourDaddy(GoblinSpawnScript goblinSpawnScript, int toughness)
+    {
+        _size = toughness;
+        _damage = toughness;
+        _hp = 2*toughness - 1;
+        _spawnScript = goblinSpawnScript;
+        var scale = gameObject.transform.localScale;
+        gameObject.transform.localScale = new Vector2(scale.x * toughness, scale.y * toughness);
+        var render = gameObject.GetComponent<SpriteRenderer>();
+        float die = 0.1f;
+        float dat = die * (toughness - 1);
+        render.material.color += new Color(dat, dat, dat);
 
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -55,16 +68,24 @@ public class GoblinType : MonoBehaviour
             var slash = otherObject.GetComponent<SwordSlash>();
             int direction = 1;
             if (otherObject.transform.position.x > gameObject.transform.position.x) direction = -1;
-            
-            if (slash.IsAttacking) TakeDamage(direction);
+
+            if (slash.IsAttacking) TakeDamage(direction, 1);
+        }
+        else if (otherObject.name.Contains("Explosion") || otherObject.name.Contains("Fireball"))
+        {
+            int direction = 1;
+            if (otherObject.transform.position.x > gameObject.transform.position.x) direction = -1;
+
+            TakeDamage(direction, 2);
+
         }
     }
 
-    private void TakeDamage(int direction)
+    private void TakeDamage(int direction, int damage)
     {
         if (_agentState.IsInvincible) return;
-        _hp--;
-        _body.velocity = new Vector2(direction*_knockBackX,_knockBackY);
+        _hp -= damage;
+        _body.velocity = new Vector2(direction * _knockBackX, _knockBackY);
         _agentState.IsTakingDamage = true;
         _agentState.IsInvincible = true;
         string nextAction = "Die";
@@ -74,7 +95,7 @@ public class GoblinType : MonoBehaviour
 
     private void Die()
     {
-        
+        _spawnScript.Died();
         Destroy(gameObject);
     }
 

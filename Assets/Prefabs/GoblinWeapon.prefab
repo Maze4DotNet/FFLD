@@ -102,7 +102,7 @@ Rigidbody2D:
   m_Mass: 0.7154785
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0.5
+  m_GravityScale: 0.25
   m_Material: {fileID: 6200000, guid: 303dfb01903a22843be4b878b3d835f3, type: 2}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -146,8 +146,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: afc8448444752be4bb79e4d248f9b8c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedX: 10
-  _speedY: 2
+  _speedX: 5
+  _speedY: 1
   _rotationSpeed: 500
   _body: {fileID: -250386970407507515}
+  _damage: 0
   _lifeTime: 1

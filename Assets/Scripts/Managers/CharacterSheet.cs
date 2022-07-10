@@ -41,6 +41,8 @@ public class CharacterSheet : MonoBehaviour
 
     public Rigidbody2D _body;
 
+    public GameObject _downLevelMenu;
+
     #endregion FIELDS
 
 
@@ -115,6 +117,14 @@ public class CharacterSheet : MonoBehaviour
             _mana = value;
         }
     }
+
+    public int TotalLevel
+    {
+        get
+        {
+            return AttackLevel + DefenseLevel + EnduranceLevel + MagicLevel;
+        }
+    }
     #endregion PROPERTIES
 
     #region METHODS
@@ -187,6 +197,10 @@ public class CharacterSheet : MonoBehaviour
     private void LevelDown()
     {
         _inexperiencePoints = 0;
+        _requiredPoints = Math.Min(10, _requiredPoints + 1);
+        Instantiate(_downLevelMenu);
+        //Time.timeScale = 0f;
+        GetComponent<GoblinSpawnScript>();
     }
 
     public void DecreaseEnergy(string caller, bool successful)

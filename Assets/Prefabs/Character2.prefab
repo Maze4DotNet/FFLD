@@ -104,6 +104,7 @@ GameObject:
   - component: {fileID: 207690383348040960}
   - component: {fileID: 6022328106121779785}
   - component: {fileID: 3342978714215156359}
+  - component: {fileID: 2176712620242481677}
   m_Layer: 0
   m_Name: Character2
   m_TagString: Player
@@ -439,8 +440,11 @@ MonoBehaviour:
   _invincibilityDuration: 1
   _knockBackX: 10
   _knockBackY: 5
+  _inexperiencePoints: 0
+  _requiredPoints: 1
   _agentState: {fileID: 571249039681519965}
   _body: {fileID: 571249039681519938}
+  _downLevelMenu: {fileID: 1252746929170842732, guid: d13bb794208ae9148b8af892cb2c3ddf, type: 3}
 --- !u!114 &571249039681519967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -617,6 +621,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterSheet: {fileID: 571249039681519964}
   _agentState: {fileID: 571249039681519965}
+--- !u!114 &2176712620242481677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571249039681519944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0262653e072874428202da0f196c676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _nrOfGoblins: 0
+  _goblinPrefab: {fileID: 1694539550703660138, guid: 382b22b66d2a93e41bd0ea1e7e8122ee, type: 3}
+  _characterSheet: {fileID: 571249039681519964}
+  _spawns:
+  - {x: 10, y: 5}
+  - {x: -10, y: 5}
+  - {x: 0, y: 5}
+  - {x: 0, y: 0}
+  - {x: 3, y: 0}
+  - {x: -3, y: 0}
+  - {x: 7, y: -3}
+  - {x: -7, y: -3}
+  - {x: 10, y: -5}
+  - {x: -10, y: -5}
+  - {x: -10, y: 0}
 --- !u!1 &571249040728584711
 GameObject:
   m_ObjectHideFlags: 0
