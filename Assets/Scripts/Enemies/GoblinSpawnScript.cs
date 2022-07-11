@@ -14,6 +14,9 @@ internal class GoblinSpawnScript : MonoBehaviour
     public CharacterSheet _characterSheet;
     public int _goblinsEverSpawned = 0;
     [SerializeField, Range(0, 100f)] private float _respawnTimer = 0.1f;
+    public bool _goblorIsHere = false;
+    public int _nrOfGoblinsWhenGoblorCame;
+    public bool _currentlySpawning = false;
 
     public List<Vector2> _spawns = new List<Vector2>()
     {
@@ -44,7 +47,7 @@ internal class GoblinSpawnScript : MonoBehaviour
     IEnumerator WaitThenSpawn()
     {
         yield return new WaitForSeconds(_heartSpawnTime);
-        Spawn();
+        SpawnPickup();
     }
 
     private Vector2 GetRandomSpawn()
@@ -54,23 +57,38 @@ internal class GoblinSpawnScript : MonoBehaviour
         return spawn;
     }
 
-    private void Spawn()
+    private void SpawnPickup()
     {
         var spawn = GetRandomSpawn();
         GameObject obj = _random.Next() % 3 == 0 ? _energy : _heart;
 
-        Instantiate(obj, spawn, Quaternion.identity);
-        StartCoroutine(WaitThenSpawn());
+        GameObject spawnedItem = Instantiate(obj, spawn, Quaternion.identity);
+        StartCoroutine(WaitThenDespawn(spawnedItem));
+    }
+
+    IEnumerator WaitThenDespawn(GameObject spawnedItem)
+    {
+        yield return new WaitForSeconds(10f);
+        Destroy(spawnedItem);
     }
 
     private void FixedUpdate()
     {
         var reverseLevel = 20 - _characterSheet.TotalLevel;
 
-        if (_nrOfGoblins < Math.Max(1, reverseLevel / 2))
+        if (_goblorIsHere && _nrOfGoblins > _nrOfGoblinsWhenGoblorCame + 10) return;
+        if (_nrOfGoblins < 4 && !_currentlySpawning)
         {
             _nrOfGoblins++;
+            _currentlySpawning = true;
             Invoke("AlmostSpawnGoblin", _respawnTimer);
+        }
+        if (!_goblorIsHere && _characterSheet.TotalLevel == 0)
+        {
+            // Spawn Goblor, king of the goblins.
+            SpawnGoblin(4);
+            _goblorIsHere = true;
+            _nrOfGoblinsWhenGoblorCame = _nrOfGoblins;
         }
     }
 
@@ -80,6 +98,7 @@ internal class GoblinSpawnScript : MonoBehaviour
         if (_goblinsEverSpawned != 0 && _goblinsEverSpawned % 5 == 0) toughness++;
         if (_goblinsEverSpawned != 0 && _goblinsEverSpawned % 10 == 0) toughness++;
         SpawnGoblin(toughness);
+        _currentlySpawning = false;
     }
 
     private void SpawnGoblin(int toughness)
@@ -102,5 +121,6 @@ internal class GoblinSpawnScript : MonoBehaviour
     internal void Died()
     {
         _nrOfGoblins--;
+        SpawnPickup();
     }
 }

@@ -10,7 +10,7 @@ internal class HeartsDisplay : ResourceDisplay
 {
     internal override int GetLevel()
     {
-        return _characterSheet.DefenseLevel;
+        return _characterSheet.MaxHP-1;
     }
 
     internal override int GetValue()

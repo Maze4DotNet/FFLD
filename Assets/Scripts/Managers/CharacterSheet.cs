@@ -9,8 +9,8 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 5)] private int _enduranceLevel = 5;
     [SerializeField, Range(0, 5)] private int _magicLevel = 5;
 
-    [SerializeField, Range(0, 6)] private int _hp = 6;
-    [SerializeField, Range(0, 12)] private int _energy = 12;
+    [SerializeField, Range(0, 18)] private int _hp = 18;
+    [SerializeField, Range(0, 18)] private int _energy = 18;
 
 
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
@@ -32,8 +32,11 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 10)] public int _inexperiencePoints = 0;
     [SerializeField, Range(0, 100)] public int _requiredPoints = 10;
 
+    [SerializeField] public bool _invincibleMode = false;
 
+    public int MaxEnergy { get { return 3 * (EnduranceLevel + 1); } }
 
+    public int MaxHP { get { return 3 * (DefenseLevel + 1); } }
 
     private int _currentRechargeFactor = 1;
 
@@ -134,20 +137,19 @@ public class CharacterSheet : MonoBehaviour
     #region METHODS
     internal void RestoreEnergy()
     {
-        var max = 2 * (EnduranceLevel + 1);
-        _energy = max;
+        _energy = MaxEnergy;
         _agentState.IsTired = false;
     }
     internal void Heal()
     {
-        if (_hp < _defenseLevel + 1 && !_agentState.IsDead)
+        if (_hp < MaxHP && !_agentState.IsDead)
         {
             _hp++;
         }
     }
     internal void TakeDamage(GameObject otherObject, int damage)
     {
-        if (_agentState.IsInvincible) return;
+        if (_invincibleMode || _agentState.IsInvincible) return;
         _hp-= damage;
         if (_hp <= 0)
         {
@@ -201,7 +203,7 @@ public class CharacterSheet : MonoBehaviour
             IncreaseEnergy();
         }
 
-        if (_hp > _defenseLevel + 1) _hp = _defenseLevel + 1;
+        if (_hp > MaxHP) _hp = MaxHP;
 
         if (Mana < 100 && _manaTime > _manaRechargeFactor * _manaRechargeTime)
         {
@@ -209,7 +211,7 @@ public class CharacterSheet : MonoBehaviour
             IncreaseMana();
         }
 
-        if (_inexperiencePoints >= _requiredPoints)
+        if (_inexperiencePoints >= 4)//_requiredPoints)
         {
             LevelDown();
         }
@@ -218,7 +220,7 @@ public class CharacterSheet : MonoBehaviour
     private void LevelDown()
     {
         _inexperiencePoints = 0;
-        _requiredPoints = Math.Min(10, _requiredPoints + 1);
+        //_requiredPoints = Math.Min(10, _requiredPoints + 1);
         Instantiate(_downLevelMenu);
         //Time.timeScale = 0f;
         GetComponent<GoblinSpawnScript>();
@@ -244,8 +246,7 @@ public class CharacterSheet : MonoBehaviour
 
     public void IncreaseEnergy()
     {
-        var max = 2 * (EnduranceLevel + 1);
-        if (Energy == max) return;
+        if (Energy == MaxEnergy) return;
 
         // Increase the recharge counter.
         _rechargeCounter = System.Math.Min(_rechargeMax, _rechargeCounter + 1);
@@ -255,7 +256,7 @@ public class CharacterSheet : MonoBehaviour
         _agentState.IsTired = false;
 
         _currentRechargeFactor = _rechargeFactor;
-        Energy = System.Math.Min(max, Energy + 1);
+        Energy = System.Math.Min(MaxEnergy, Energy + 1);
         _rechargeCounter = 0;
     }
 

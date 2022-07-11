@@ -282,10 +282,12 @@ MonoBehaviour:
   _invincibilityPeriod: 1
   _knockBackX: 15
   _knockBackY: 10
+  _hasCrown: 0
   _weaponType: 0
   _agentState: {fileID: 1401703340124926837}
   _body: {fileID: 2082567913534353797}
   _weapon: {fileID: 8583766317174271309, guid: d0950579e109de041a54fe2e4cde1806, type: 3}
+  _wearCrown: {fileID: 5432149322041055103}
 --- !u!1 &5816615683938728734
 GameObject:
   m_ObjectHideFlags: 0
@@ -359,7 +361,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 5efc760844f671340a8363e20f6ea61d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -383,4 +385,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8632a4b32e02b034e975e596286cb552, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _shouldWear: 0

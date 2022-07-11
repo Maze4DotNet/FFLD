@@ -10,7 +10,7 @@ internal class EnergyDisplay : ResourceDisplay
 {
     internal override int GetLevel()
     {
-        return 2 * (_characterSheet.EnduranceLevel + 1) - 1;
+        return _characterSheet.MaxEnergy-1;
     }
 
     internal override int GetValue()
