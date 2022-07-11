@@ -50,10 +50,8 @@ public class GoblinWeaponScript:MonoBehaviour
             else if (otherObject.name.Contains("Sword"))
             {
                 SwordSlash swordSlash = otherObject.GetComponent<SwordSlash>();
-                if (!swordSlash.IsAttacking) return;
+                if (swordSlash.IsAttacking) Destroy(gameObject);
             }
-            if (_toughness > 1) return;
-            Destroy(gameObject);
         }
     }
 

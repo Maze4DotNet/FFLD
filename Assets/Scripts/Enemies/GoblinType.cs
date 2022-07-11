@@ -21,25 +21,13 @@ public class GoblinType : MonoBehaviour
     public Rigidbody2D _body;
     public GameObject _weapon;
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void Attack()
     {
         var pos = this.transform.position + new Vector3(_agentState.FacingDirection * 0.5f, 0);
         GameObject newWeapon = Instantiate(_weapon, pos, Quaternion.identity);
         var scale = newWeapon.transform.localScale;
-        newWeapon.transform.localScale = new Vector3(scale.x * _size, scale.y * _size, scale.z * _size);
+        var sizey = 1 + (_size - 1) * 2;
+        newWeapon.transform.localScale = new Vector3(scale.x * sizey, scale.y * sizey, scale.z * sizey);
         GoblinWeaponScript weaponScript = newWeapon.GetComponent<GoblinWeaponScript>();
         AgentState agentState = GetComponent<AgentState>();
         weaponScript.Initialize(gameObject, this, _weaponType, agentState.FacingDirection, _damage);
@@ -49,17 +37,15 @@ public class GoblinType : MonoBehaviour
 
     internal void WhosYourDaddy(GoblinSpawnScript goblinSpawnScript, int toughness)
     {
-        _size = toughness;
+        _size = toughness == 1 ? toughness : toughness * 0.7f;
         _damage = toughness;
         _hp = 2 * toughness - 1;
         _spawnScript = goblinSpawnScript;
         var scale = gameObject.transform.localScale;
-        gameObject.transform.localScale = new Vector2(scale.x * toughness, scale.y * toughness);
+        gameObject.transform.localScale = new Vector2(scale.x * _size, scale.y * _size);
         var render = gameObject.GetComponent<SpriteRenderer>();
         float die = 0.1f;
         float dat = die * (toughness - 1);
-        //render.material.color += new Color(dat, dat, dat);
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -77,25 +63,18 @@ public class GoblinType : MonoBehaviour
         {
             int direction = 1;
             if (otherObject.transform.position.x > gameObject.transform.position.x) direction = -1;
-
             TakeDamage(direction, 2);
-
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         var otherObject = collision.gameObject;
-        if (otherObject.name.Contains("Character"))
+        if (otherObject.name.Contains("Character") && !_agentState.IsTakingDamage)
         {
-            int direction = -1;
-            if (otherObject.transform.position.x > gameObject.transform.position.x) direction = 1;
-
             var sheet = otherObject.GetComponent<CharacterSheet>();
-
             sheet.TakeDamage(gameObject, _damage);
         }
-
     }
 
     private void TakeDamage(int direction, int damage)

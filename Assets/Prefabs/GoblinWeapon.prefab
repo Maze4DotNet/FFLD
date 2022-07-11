@@ -152,4 +152,4 @@ MonoBehaviour:
   _body: {fileID: -250386970407507515}
   _toughness: 0
   _damage: 0
-  _lifeTime: 10
+  _lifeTime: 20
