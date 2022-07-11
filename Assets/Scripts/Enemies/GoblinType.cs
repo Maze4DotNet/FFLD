@@ -11,6 +11,8 @@ public class GoblinType : MonoBehaviour
     [SerializeField, Range(0f, 100f)] public float _invincibilityPeriod;
     [SerializeField, Range(0f, 100f)] public float _knockBackX;
     [SerializeField, Range(0f, 100f)] public float _knockBackY;
+    [SerializeField] public bool _hasCrown;
+
     private GoblinSpawnScript _spawnScript;
     /// <summary>
     /// 0 for dagger, 1 for sword.
@@ -20,6 +22,7 @@ public class GoblinType : MonoBehaviour
     public AgentState _agentState;
     public Rigidbody2D _body;
     public GameObject _weapon;
+    public WearCrown _wearCrown;
 
     public void Attack()
     {
@@ -46,6 +49,7 @@ public class GoblinType : MonoBehaviour
         var render = gameObject.GetComponent<SpriteRenderer>();
         float die = 0.1f;
         float dat = die * (toughness - 1);
+        if (toughness < 4) _wearCrown.NoCrown();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
