@@ -30,10 +30,18 @@ public class FireballBehavior : MonoBehaviour
         //transform.Translate(_direction, 0, 0.1f*Time.deltaTime);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerStay2D(Collider2D other)
     {
         if (other.name.Contains("Trigger")) return;
         if (other.name.Contains("Sword")) return;
+        if (other.name.Contains("Weapon")) return;
+        if (other.name.Contains("Heart")) return; 
+        if (other.name.Contains("Energy")) return;
+        if (other.name == "Goblin")
+        {
+            return;
+        }
+
         if (other.tag != "Player")
         {
             Destroy(gameObject);

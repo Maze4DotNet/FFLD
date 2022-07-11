@@ -144,13 +144,13 @@ public class CharacterSheet : MonoBehaviour
     {
         if (_hp < MaxHP && !_agentState.IsDead)
         {
-            _hp++;
+            _hp += 3;
         }
     }
     internal void TakeDamage(GameObject otherObject, int damage)
     {
         if (_invincibleMode || _agentState.IsInvincible) return;
-        _hp-= damage;
+        _hp -= damage;
         if (_hp <= 0)
         {
             _agentState.Die();
@@ -164,7 +164,7 @@ public class CharacterSheet : MonoBehaviour
         if (otherPos.x > myPos.x) flyDir = -1;
         else flyDir = 1;
 
-        var newVelocity = new Vector2(flyDir*_knockBackX, _knockBackY);
+        var newVelocity = new Vector2(flyDir * _knockBackX, _knockBackY);
         _body.velocity += newVelocity;
 
         _agentState.IsTakingDamage = true;

@@ -14,7 +14,7 @@ public class EnemyController : MonoBehaviour
     public GoblinType _type;
     [SerializeField, Range(0f, 100f)] private float _reloadTime;
     private bool _reloading = false;
-    [SerializeField, Range(0f, 100f)] private float _yDistanceBoi=10f;
+    [SerializeField, Range(0f, 100f)] private float _yDistanceBoi=13f;
 
     // Start is called before the first frame update
     void Awake()

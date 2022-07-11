@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18dd7d87df35aa14ab77380f73f8b18b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpHeight: 3
+  _jumpHeight: 5
   _downwardMovementMultiplier: 3
   _upwardMovementMultiplier: 1.7
   _transform: {fileID: 5053631827066466524}
