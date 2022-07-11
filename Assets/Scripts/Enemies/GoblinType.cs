@@ -40,7 +40,7 @@ public class GoblinType : MonoBehaviour
 
     internal void WhosYourDaddy(GoblinSpawnScript goblinSpawnScript, int toughness)
     {
-        _size = toughness == 1 ? toughness : toughness * 0.7f;
+        _size = toughness == 1 ? toughness : toughness * 0.6f;
         _damage = toughness;
         _hp = 2 * toughness - 1;
         _spawnScript = goblinSpawnScript;
@@ -68,6 +68,7 @@ public class GoblinType : MonoBehaviour
             int direction = 1;
             if (otherObject.transform.position.x > gameObject.transform.position.x) direction = -1;
             TakeDamage(direction, 2);
+            if (otherObject.name.Contains("Fireball")) Destroy(otherObject);
         }
 
     }

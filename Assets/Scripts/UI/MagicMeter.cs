@@ -19,13 +19,13 @@ internal class MagicMeter : MonoBehaviour
 
     private void Update()
     {
-        if (_characterSheet.MagicLevel == 0)
-        {
-            _magicMeter.sprite = _nothing;
-            _manaValue.sprite = _nothing;
-            return;
-        }
-        _manaValue.transform.localScale = new Vector3(_characterSheet.Mana *3.17f/ 100, 3.17f, 3.17f);
+        //if (_characterSheet.MagicLevel == 0)
+        //{
+        //    _magicMeter.sprite = _nothing;
+        //    _manaValue.sprite = _nothing;
+        //    return;
+        //}
+        _manaValue.transform.localScale = new Vector3(_characterSheet.Mana * 13.77396f/ 100, 3.17f, 3.17f);
         _magicMeter.sprite = _magicMeterSprite;
         _manaValue.sprite = _manaValueSprite;
     }

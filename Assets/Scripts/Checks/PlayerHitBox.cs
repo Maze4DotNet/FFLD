@@ -23,18 +23,18 @@ internal class PlayerHitBox : MonoBehaviour
     //    _characterSheet.TakeDamage(otherObject, damage);
     //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         var otherObject = collision.gameObject;
         if (otherObject.name.Contains("Heart"))
         {
             _characterSheet.Heal();
-        Destroy(otherObject);
+            Destroy(otherObject);
         }
         else if (otherObject.name.Contains("Energy"))
-            {
-                _characterSheet.RestoreEnergy();
-                Destroy(otherObject);
-            }
+        {
+            _characterSheet.RestoreEnergy();
+            Destroy(otherObject);
+        }
     }
 }
