@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,7 @@ public class EnemyController : MonoBehaviour
     public GoblinType _type;
     [SerializeField, Range(0f, 100f)] private float _reloadTime;
     private bool _reloading = false;
+    [SerializeField, Range(0f, 100f)] private float _yDistanceBoi=10f;
 
     // Start is called before the first frame update
     void Awake()
@@ -50,11 +52,13 @@ public class EnemyController : MonoBehaviour
         else
         {
             _agentState.IsAttacking = false;
-            if (_player.transform.position.x > _transform.position.x && _direction == 1 ||
-                _player.transform.position.x < _transform.position.x && _direction == -1)
+            if ((_player.transform.position.x > _transform.position.x && _direction == 1 ||
+                _player.transform.position.x < _transform.position.x && _direction == -1) &&
+                Math.Abs(_player.transform.position.y - _transform.position.y) < _yDistanceBoi)
             {
                 _state = 1;
             }
+            else _state = 0;
             if (_state == 0)
             {
                 _direction = _roamDirection;
@@ -88,12 +92,12 @@ public class EnemyController : MonoBehaviour
     IEnumerator Roaming()
     {
         _roamDirection = randomDirection();
-        yield return new WaitForSeconds(Random.Range(0.1f, 1f));
+        yield return new WaitForSeconds(UnityEngine.Random.Range(0.1f, 1f));
         StartCoroutine(Roaming());
     }
     private float randomDirection()
     {
-        float val = Random.Range(-1f, 1f);
+        float val = UnityEngine.Random.Range(-1f, 1f);
         if (val > 0)
         {
             return 1f;

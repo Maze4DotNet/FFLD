@@ -11,27 +11,30 @@ internal class PlayerHitBox : MonoBehaviour
     public AgentState _agentState;
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        var otherObject = collision.gameObject;
-        if (!otherObject.name.Contains("Goblin")) return;
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    var otherObject = collision.gameObject;
+    //    if (!otherObject.name.Contains("Goblin")) return;
 
-        int damage;
-        if (otherObject.name.Contains("Weapon")) damage = otherObject.GetComponent<GoblinWeaponScript>()._damage;
-        else damage = otherObject.GetComponent<GoblinType>()._damage;
+    //    int damage;
+    //    if (otherObject.name.Contains("Weapon")) damage = otherObject.GetComponent<GoblinWeaponScript>()._damage;
+    //    else damage = otherObject.GetComponent<GoblinType>()._damage;
 
-        _characterSheet.TakeDamage(otherObject, damage);
-    }
+    //    _characterSheet.TakeDamage(otherObject, damage);
+    //}
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var otherObject = collision.gameObject;
-        if (!otherObject.name.Contains("Goblin")) return;
-
-        int damage;
-        if (otherObject.name.Contains("Weapon")) damage = otherObject.GetComponent<GoblinWeaponScript>()._damage;
-        else damage = otherObject.GetComponent<GoblinType>()._damage;
-
-        _characterSheet.TakeDamage(otherObject, damage);
+        if (otherObject.name.Contains("Heart"))
+        {
+            _characterSheet.Heal();
+        Destroy(otherObject);
+        }
+        else if (otherObject.name.Contains("Energy"))
+            {
+                _characterSheet.RestoreEnergy();
+                Destroy(otherObject);
+            }
     }
 }

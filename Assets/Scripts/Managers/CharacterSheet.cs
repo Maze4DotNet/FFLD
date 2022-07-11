@@ -20,10 +20,13 @@ public class CharacterSheet : MonoBehaviour
 
     [SerializeField, Range(0, 3)] private float _manaRechargeTime;
     [SerializeField, Range(0, 100)] private int _mana = 100;
-    [SerializeField, Range(0, 10)] private int _manaRechargeFactor = 1; 
+    [SerializeField, Range(0, 10)] private int _manaRechargeFactor = 1;
+
 
     [SerializeField, Range(0f, 100f)] private float _invincibilityDuration;
     [SerializeField, Range(0f, 100f)] private float _knockBackX;
+
+
     [SerializeField, Range(0f, 100f)] private float _knockBackY;
 
     [SerializeField, Range(0, 10)] public int _inexperiencePoints = 0;
@@ -128,13 +131,26 @@ public class CharacterSheet : MonoBehaviour
     #endregion PROPERTIES
 
     #region METHODS
+    internal void RestoreEnergy()
+    {
+        var max = 2 * (EnduranceLevel + 1);
+        _energy = max;
+        _agentState.IsTired = false;
+    }
+    internal void Heal()
+    {
+        if (_hp < _defenseLevel + 1 && !_agentState.IsDead)
+        {
+            _hp++;
+        }
+    }
     internal void TakeDamage(GameObject otherObject, int damage)
     {
         if (_agentState.IsInvincible) return;
         _hp-= damage;
         if (_hp <= 0)
         {
-            _agentState.IsDead = true;
+            _agentState.Die();
             //doodgaan
             return;
         }

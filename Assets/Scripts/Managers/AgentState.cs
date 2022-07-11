@@ -71,4 +71,17 @@ public class AgentState : MonoBehaviour
         _animator.SetBool("isCelebrating", IsCelebrating);
         _animator.SetBool("isTired", IsTired);
     }
+
+    internal void Die()
+    {
+        IsDead = true;
+        IsDashing = false;
+        IsAttacking = false;
+        IsCasting = false;
+        IsSwinging = false;
+        IsWalking = false;
+        IsTakingDamage = false;
+        IsCelebrating = false;
+        IsTired = false;
+    }
 }

@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 3342978714215156359}
   - component: {fileID: 2176712620242481677}
   m_Layer: 0
-  m_Name: Character2
+  m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -636,6 +636,8 @@ MonoBehaviour:
   _nrOfGoblins: 0
   _goblinPrefab: {fileID: 1694539550703660138, guid: 382b22b66d2a93e41bd0ea1e7e8122ee, type: 3}
   _characterSheet: {fileID: 571249039681519964}
+  _goblinsEverSpawned: 0
+  _respawnTimer: 0.1
   _spawns:
   - {x: 10, y: 5}
   - {x: -10, y: 5}
@@ -648,6 +650,10 @@ MonoBehaviour:
   - {x: 10, y: -5}
   - {x: -10, y: -5}
   - {x: -10, y: 0}
+  _heartSpawnTime: 5
+  _initialEnergySpawnerTimer: 5
+  _heart: {fileID: 1729341432570024172, guid: 80a4ffe0874e91645928c0519a9cafc7, type: 3}
+  _energy: {fileID: 1729341432570024172, guid: 9a4762cb2511d51488a326d35d384381, type: 3}
 --- !u!1 &571249040728584711
 GameObject:
   m_ObjectHideFlags: 0
