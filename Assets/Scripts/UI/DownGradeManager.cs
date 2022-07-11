@@ -11,13 +11,22 @@ public class DownGradeManager : MonoBehaviour
     public TextMeshProUGUI _dfsLevelText;
     public TextMeshProUGUI _endLevelText;
     public TextMeshProUGUI _magLevelText;
+    public TextMeshProUGUI _totalLevel;
+
     private bool _canChoose = true;
-    public float _timeToClose = 0.0f;
+    public float _timeToClose = 1000.0f;
+
+    private bool _canClose = false;
 
     void Awake()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _characterSheet = _player.GetComponent<CharacterSheet>();
+        if (_characterSheet.TotalLevel == 0)
+        {
+            _canClose = true;
+            CloseMenu();
+        }
     }
     void Update()
     {
@@ -25,44 +34,43 @@ public class DownGradeManager : MonoBehaviour
         _dfsLevelText.text = "Defense Level: " + _characterSheet.DefenseLevel.ToString();
         _endLevelText.text = "Endurance Level: " + _characterSheet.EnduranceLevel.ToString();
         _magLevelText.text = "Magic Level: " + _characterSheet.MagicLevel.ToString();
+        _totalLevel.text = $"You are level {_characterSheet.TotalLevel}";
     }
     public void decrAttack()
     {
-        if(_characterSheet.AttackLevel > 0 && _canChoose)
+        if (_characterSheet.AttackLevel > 0 && _canChoose)
         {
-            _characterSheet.AttackLevel --;
-            _canChoose = false;
-            Invoke("CloseMenu", _timeToClose);
+            _characterSheet.AttackLevel--;
+            _canChoose = false; _canClose = true;
         }
     }
     public void decrDefense()
     {
-        if(_characterSheet.DefenseLevel > 0 && _canChoose)
+        if (_characterSheet.DefenseLevel > 0 && _canChoose)
         {
-            _characterSheet.DefenseLevel --;
-            _canChoose = false;
-            Invoke("CloseMenu", _timeToClose);
+            _characterSheet.DefenseLevel--;
+            _canChoose = false; _canClose = true;
         }
     }
     public void decrEndure()
     {
-        if(_characterSheet.EnduranceLevel > 0 && _canChoose)
+        if (_characterSheet.EnduranceLevel > 0 && _canChoose)
         {
-            _characterSheet.EnduranceLevel --;
-            _canChoose = false;
-            Invoke("CloseMenu", _timeToClose);
+            _characterSheet.EnduranceLevel--;
+            _canChoose = false; _canClose = true;
         }
     }
     public void decrMagic()
     {
-        if(_characterSheet.MagicLevel > 0 && _canChoose)
+        if (_characterSheet.MagicLevel > 0 && _canChoose)
         {
-            _characterSheet.MagicLevel --;
-            _canChoose = false;
-            Invoke("CloseMenu", _timeToClose);
+            _characterSheet.MagicLevel--;
+            _canChoose = false; _canClose = true;
         }
     }
-    void CloseMenu(){
-        Destroy(transform.parent.gameObject);
+
+    public void CloseMenu()
+    {
+        if (_canClose) Destroy(transform.parent.gameObject);
     }
 }

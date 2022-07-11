@@ -8,8 +8,9 @@ public class FireballBehavior : MonoBehaviour
     public GameObject _explosion;
     public CharacterSheet _characterSheet;
     public Rigidbody2D _body;
-    [SerializeField, Range(0f, 100f)] public float _speedX = 100f; 
+    [SerializeField, Range(0f, 100f)] public float _speedX = 100f;
     [SerializeField, Range(0f, 100f)] public float _speedY = 100f;
+    [SerializeField, Range(0f, 100f)] public float _fraction = 1.5f;
 
 
     private void Awake()
@@ -42,6 +43,6 @@ public class FireballBehavior : MonoBehaviour
     void OnDestroy(){
         GameObject explosion = Instantiate(_explosion, this.transform.position, Quaternion.identity);
         var scale = explosion.transform.localScale;
-        explosion.transform.localScale = new Vector3(scale.x * _characterSheet.MagicLevel, scale.y * _characterSheet.MagicLevel, scale.z);
+        explosion.transform.localScale = new Vector3(scale.x * _characterSheet.MagicLevel/ _fraction, scale.y * _characterSheet.MagicLevel/_fraction, scale.z);
     }
 }
