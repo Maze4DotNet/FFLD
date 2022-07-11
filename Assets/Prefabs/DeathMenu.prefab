@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1252746929170842735}
   - component: {fileID: 1252746929170842734}
   - component: {fileID: 1252746929170842733}
+  - component: {fileID: 1176896903947666251}
   m_Layer: 5
   m_Name: DeathMenu
   m_TagString: Untagged
@@ -109,6 +110,25 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1176896903947666251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1252746929170842732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ffc5a34fadb8ad49bb75aa11ee2d61c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _atkLevelText: {fileID: 0}
+  _dfsLevelText: {fileID: 0}
+  _endLevelText: {fileID: 0}
+  _magLevelText: {fileID: 0}
+  _totalLevel: {fileID: 0}
+  _special: 1
+  _timeToClose: 1000
 --- !u!1 &1798355927018598119
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,6 +381,7 @@ MonoBehaviour:
   _endLevelText: {fileID: 3554520408406506922}
   _magLevelText: {fileID: 6692286354958098804}
   _totalLevel: {fileID: 1146610034189799109}
+  _special: 0
   _timeToClose: 0
 --- !u!114 &4009195906297930868
 MonoBehaviour:

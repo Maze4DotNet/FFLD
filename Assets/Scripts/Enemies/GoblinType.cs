@@ -10,8 +10,12 @@ public class GoblinType : MonoBehaviour
     [SerializeField, Range(0, 6)] public int _damage;
     [SerializeField, Range(0f, 100f)] public float _invincibilityPeriod;
     [SerializeField, Range(0f, 100f)] public float _knockBackX;
-    [SerializeField, Range(0f, 100f)] public float _knockBackY;
+    [SerializeField, Range(0f, 100f)] public float _knockBackY; 
+    [SerializeField, Range(0f, 1f)] public float _sizeFactor = 0.6f;
     [SerializeField] public bool _hasCrown;
+
+
+    public GameObject _victoryScreen;
 
     private GoblinSpawnScript _spawnScript;
     /// <summary>
@@ -34,13 +38,13 @@ public class GoblinType : MonoBehaviour
         GoblinWeaponScript weaponScript = newWeapon.GetComponent<GoblinWeaponScript>();
         AgentState agentState = GetComponent<AgentState>();
         weaponScript.Initialize(gameObject, this, _weaponType, agentState.FacingDirection, _damage);
-        weaponScript._toughness = (int)_size;
+        weaponScript._toughness = Math.Min((int)(3f/_sizeFactor),(int)_size);
         weaponScript.Attack();
     }
 
     internal void WhosYourDaddy(GoblinSpawnScript goblinSpawnScript, int toughness)
     {
-        _size = toughness == 1 ? toughness : toughness * 0.6f;
+        _size = toughness == 1 ? toughness : toughness * _sizeFactor;
         _damage = toughness;
         _hp = 2 * toughness - 1;
         _spawnScript = goblinSpawnScript;
@@ -102,6 +106,10 @@ public class GoblinType : MonoBehaviour
     private void Die()
     {
         _spawnScript.Died();
+        if (_damage == 4)
+        {
+            Instantiate(_victoryScreen);
+        }
         Destroy(gameObject);
     }
 
@@ -110,5 +118,10 @@ public class GoblinType : MonoBehaviour
         _agentState.IsTakingDamage = false;
         _agentState.IsInvincible = false;
 
+    }
+
+    private void FixedUpdate()
+    {
+        if (_spawnScript._goblorIsHere && _damage < 4) Destroy(gameObject);
     }
 }

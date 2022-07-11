@@ -211,7 +211,7 @@ public class CharacterSheet : MonoBehaviour
             IncreaseMana();
         }
 
-        if (_inexperiencePoints >= 4)//_requiredPoints)
+        if (_inexperiencePoints >= 4 && TotalLevel != 0)//_requiredPoints)
         {
             LevelDown();
         }

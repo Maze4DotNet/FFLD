@@ -14,6 +14,8 @@ public class DownGradeManager : MonoBehaviour
     public TextMeshProUGUI _magLevelText;
     public TextMeshProUGUI _totalLevel;
 
+    [SerializeField] public bool _special = false;
+
     private bool _canChoose = true;
     public float _timeToClose = 1000.0f;
 
@@ -23,10 +25,10 @@ public class DownGradeManager : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         _characterSheet = _player.GetComponent<CharacterSheet>();
-        if (_characterSheet.TotalLevel == 0)
-        {
-            CloseMenuWithoutCheck();
-        }
+        //if (_characterSheet.TotalLevel == 0 && !_special)
+        //{
+        //    CloseMenuWithoutCheck();
+        //}
     }
     void Update()
     {

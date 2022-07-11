@@ -76,7 +76,7 @@ internal class GoblinSpawnScript : MonoBehaviour
     {
         var reverseLevel = 20 - _characterSheet.TotalLevel;
 
-        if (_goblorIsHere && _nrOfGoblins > _nrOfGoblinsWhenGoblorCame + 10) return;
+        if (_goblorIsHere) return;
         if (_nrOfGoblins < 4 && !_currentlySpawning)
         {
             _nrOfGoblins++;
