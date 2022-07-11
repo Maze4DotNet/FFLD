@@ -59,7 +59,7 @@ internal class GoblinSpawnScript : MonoBehaviour
         var spawn = GetRandomSpawn();
         GameObject obj = _random.Next() % 3 == 0 ? _energy : _heart;
 
-        Instantiate(obj,spawn,Quaternion.identity);
+        Instantiate(obj, spawn, Quaternion.identity);
         StartCoroutine(WaitThenSpawn());
     }
 
@@ -67,7 +67,7 @@ internal class GoblinSpawnScript : MonoBehaviour
     {
         var reverseLevel = 20 - _characterSheet.TotalLevel;
 
-        if (_nrOfGoblins < Math.Max(1,reverseLevel / 2))
+        if (_nrOfGoblins < Math.Max(1, reverseLevel / 2))
         {
             _nrOfGoblins++;
             Invoke("AlmostSpawnGoblin", _respawnTimer);
@@ -84,7 +84,15 @@ internal class GoblinSpawnScript : MonoBehaviour
 
     private void SpawnGoblin(int toughness)
     {
-        var spawn = GetRandomSpawn();
+        Vector2 spawn;
+        bool close;
+        float distance;
+        do
+        {
+            spawn = GetRandomSpawn();
+            distance = Vector2.Distance(spawn, transform.position);
+            close = distance < 5;
+        } while (close);
         GameObject newGoblin = Instantiate(_goblinPrefab, spawn, Quaternion.identity);
         GoblinType type = newGoblin.GetComponent<GoblinType>();
         type.WhosYourDaddy(this, toughness);
