@@ -24,8 +24,7 @@ public class DownGradeManager : MonoBehaviour
         _characterSheet = _player.GetComponent<CharacterSheet>();
         if (_characterSheet.TotalLevel == 0)
         {
-            _canClose = true;
-            CloseMenu();
+            CloseMenuWithoutCheck();
         }
     }
     void Update()
@@ -71,6 +70,11 @@ public class DownGradeManager : MonoBehaviour
 
     public void CloseMenu()
     {
-        if (_canClose) Destroy(transform.parent.gameObject);
+        if (_canClose) CloseMenuWithoutCheck();
+    }
+
+    public void CloseMenuWithoutCheck()
+    {
+        Destroy(transform.parent.gameObject);
     }
 }

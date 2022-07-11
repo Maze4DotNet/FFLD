@@ -45,6 +45,7 @@ public class CharacterSheet : MonoBehaviour
     public Rigidbody2D _body;
 
     public GameObject _downLevelMenu;
+    public GameObject _introScreen;
 
     #endregion FIELDS
 
@@ -185,6 +186,10 @@ public class CharacterSheet : MonoBehaviour
         _agentState.IsInvincible = false;
     }
 
+    private void Awake()
+    {
+        Instantiate(_introScreen);
+    }
     private void Update()
     {
         _energyTime += Time.deltaTime;

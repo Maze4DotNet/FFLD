@@ -445,6 +445,7 @@ MonoBehaviour:
   _agentState: {fileID: 571249039681519965}
   _body: {fileID: 571249039681519938}
   _downLevelMenu: {fileID: 1252746929170842732, guid: d13bb794208ae9148b8af892cb2c3ddf, type: 3}
+  _introScreen: {fileID: 1252746929170842732, guid: 8f95feb96cf647b41b2900298df0d983, type: 3}
 --- !u!114 &571249039681519967
 MonoBehaviour:
   m_ObjectHideFlags: 0
