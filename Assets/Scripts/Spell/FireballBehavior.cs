@@ -30,6 +30,11 @@ public class FireballBehavior : MonoBehaviour
         //transform.Translate(_direction, 0, 0.1f*Time.deltaTime);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name.Contains("Platform")) Destroy(gameObject);
+    }
+
     void OnTriggerStay2D(Collider2D other)
     {
         if (other.name.Contains("Trigger")) return;
@@ -51,6 +56,7 @@ public class FireballBehavior : MonoBehaviour
     void OnDestroy(){
         GameObject explosion = Instantiate(_explosion, this.transform.position, Quaternion.identity);
         var scale = explosion.transform.localScale;
-        explosion.transform.localScale = new Vector3(scale.x * _characterSheet.MagicLevel/ _fraction, scale.y * _characterSheet.MagicLevel/_fraction, scale.z);
+        var scaler = (_characterSheet.MagicLevel + 1) / _fraction;
+        explosion.transform.localScale = new Vector3(scale.x * scaler, scale.y * scaler, scale.z);
     }
 }

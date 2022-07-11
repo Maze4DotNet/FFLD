@@ -247,7 +247,7 @@ MonoBehaviour:
   _agentState: {fileID: 1401703340124926837}
   _type: {fileID: 6845100197947379395}
   _reloadTime: 1
-  _yDistanceBoi: 10
+  _yDistanceBoi: 3
 --- !u!114 &6515711349379316457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +282,9 @@ MonoBehaviour:
   _invincibilityPeriod: 1
   _knockBackX: 15
   _knockBackY: 10
+  _sizeFactor: 0.6
   _hasCrown: 0
+  _victoryScreen: {fileID: 1252746929170842732, guid: 2862d8427cf40de4aadaf71280fcdea1, type: 3}
   _weaponType: 0
   _agentState: {fileID: 1401703340124926837}
   _body: {fileID: 2082567913534353797}
