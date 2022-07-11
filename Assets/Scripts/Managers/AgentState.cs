@@ -23,6 +23,8 @@ public class AgentState : MonoBehaviour
     public bool IsCelebrating { get; set; }
     public bool IsTired { get; set; }
 
+    public GameObject _deathScreen;
+
     public bool CantMove
     {
         get
@@ -85,18 +87,12 @@ public class AgentState : MonoBehaviour
         IsTakingDamage = false;
         IsCelebrating = false;
         IsTired = false;
-
-        StartCoroutine(WaitThenRestart());
+        StartCoroutine(WaitThenDeathScren());
     }
 
-    IEnumerator WaitThenRestart()
+    IEnumerator WaitThenDeathScren()
     {
-        yield return new WaitForSeconds(5);
-        RestartScene();
+        yield return new WaitForSeconds(4F);
+        Instantiate(_deathScreen);
     }
-
-    private void RestartScene()
-    {
-        SceneManager.LoadScene("kaastest");
-            }
 }
