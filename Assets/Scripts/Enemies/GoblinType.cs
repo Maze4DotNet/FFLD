@@ -48,7 +48,7 @@ public class GoblinType : MonoBehaviour
         float dat = die * (toughness - 1);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         var otherObject = collision.gameObject;
         if (otherObject.name.Contains("Sword"))
@@ -65,6 +65,11 @@ public class GoblinType : MonoBehaviour
             if (otherObject.transform.position.x > gameObject.transform.position.x) direction = -1;
             TakeDamage(direction, 2);
         }
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
