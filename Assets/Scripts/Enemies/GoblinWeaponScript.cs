@@ -15,6 +15,8 @@ public class GoblinWeaponScript:MonoBehaviour
     public Rigidbody2D _body;
     private BoxCollider2D _collider;
 
+    public int _toughness;
+
     private GameObject _goblinObject;
     private GoblinType _goblinType;
     private int _weaponType;
@@ -50,6 +52,7 @@ public class GoblinWeaponScript:MonoBehaviour
                 SwordSlash swordSlash = otherObject.GetComponent<SwordSlash>();
                 if (!swordSlash.IsAttacking) return;
             }
+            if (_toughness > 1) return;
             Destroy(gameObject);
         }
     }
@@ -83,7 +86,7 @@ public class GoblinWeaponScript:MonoBehaviour
 
     public void Throw()
     {
-        var newVelocity = new Vector2(_direction * _speedX, 1f * _speedY);
+        var newVelocity = new Vector2(_direction * _speedX*_toughness, 1f * _speedY* _toughness);
         _body.velocity = newVelocity;
     }
 

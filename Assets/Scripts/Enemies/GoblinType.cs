@@ -38,10 +38,12 @@ public class GoblinType : MonoBehaviour
     {
         var pos = this.transform.position + new Vector3(_agentState.FacingDirection * 0.5f, 0);
         GameObject newWeapon = Instantiate(_weapon, pos, Quaternion.identity);
-
+        var scale = newWeapon.transform.localScale;
+        newWeapon.transform.localScale = new Vector3(scale.x * _size, scale.y * _size, scale.z * _size);
         GoblinWeaponScript weaponScript = newWeapon.GetComponent<GoblinWeaponScript>();
         AgentState agentState = GetComponent<AgentState>();
         weaponScript.Initialize(gameObject, this, _weaponType, agentState.FacingDirection, _damage);
+        weaponScript._toughness = (int)_size;
         weaponScript.Attack();
     }
 
@@ -49,7 +51,7 @@ public class GoblinType : MonoBehaviour
     {
         _size = toughness;
         _damage = toughness;
-        _hp = 2*toughness - 1;
+        _hp = 2 * toughness - 1;
         _spawnScript = goblinSpawnScript;
         var scale = gameObject.transform.localScale;
         gameObject.transform.localScale = new Vector2(scale.x * toughness, scale.y * toughness);
@@ -79,6 +81,21 @@ public class GoblinType : MonoBehaviour
             TakeDamage(direction, 2);
 
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        var otherObject = collision.gameObject;
+        if (otherObject.name.Contains("Character"))
+        {
+            int direction = -1;
+            if (otherObject.transform.position.x > gameObject.transform.position.x) direction = 1;
+
+            var sheet = otherObject.GetComponent<CharacterSheet>();
+
+            sheet.TakeDamage(gameObject, _damage);
+        }
+
     }
 
     private void TakeDamage(int direction, int damage)
