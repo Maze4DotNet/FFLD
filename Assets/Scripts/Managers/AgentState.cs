@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AgentState : MonoBehaviour
 {
@@ -83,5 +85,18 @@ public class AgentState : MonoBehaviour
         IsTakingDamage = false;
         IsCelebrating = false;
         IsTired = false;
+
+        StartCoroutine(WaitThenRestart());
     }
+
+    IEnumerator WaitThenRestart()
+    {
+        yield return new WaitForSeconds(5);
+        RestartScene();
+    }
+
+    private void RestartScene()
+    {
+        SceneManager.LoadScene("kaastest");
+            }
 }
