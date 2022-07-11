@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DownGradeManager : MonoBehaviour
 {
@@ -33,7 +34,9 @@ public class DownGradeManager : MonoBehaviour
         _dfsLevelText.text = "Defense Level: " + _characterSheet.DefenseLevel.ToString();
         _endLevelText.text = "Endurance Level: " + _characterSheet.EnduranceLevel.ToString();
         _magLevelText.text = "Magic Level: " + _characterSheet.MagicLevel.ToString();
-        _totalLevel.text = $"You are level {_characterSheet.TotalLevel}";
+        string start = "You are level";
+        if (_characterSheet.Hp <= 0) start = "You made it down to level";
+        _totalLevel.text = $"{start} {_characterSheet.TotalLevel}";
     }
     public void decrAttack()
     {
@@ -76,5 +79,10 @@ public class DownGradeManager : MonoBehaviour
     public void CloseMenuWithoutCheck()
     {
         Destroy(transform.parent.gameObject);
+    }
+
+    public void RestartScene()
+    {
+        SceneManager.LoadScene("kaastest");
     }
 }

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class GoblinWeaponScript:MonoBehaviour
+public class GoblinWeaponScript : MonoBehaviour
 {
     [SerializeField, Range(0f, 100f)] public float _speedX = 100f;
     [SerializeField, Range(0f, 100f)] public float _speedY = 100f;
@@ -44,13 +44,17 @@ public class GoblinWeaponScript:MonoBehaviour
             if (otherObject.name.Contains("Character"))
             {
                 var sheet = otherObject.GetComponent<CharacterSheet>();
-                sheet.TakeDamage(gameObject,_damage);
+                sheet.TakeDamage(gameObject, _damage);
             }
             else if (otherObject.name.Contains("Trigger")) return;
             else if (otherObject.name.Contains("Sword"))
             {
                 SwordSlash swordSlash = otherObject.GetComponent<SwordSlash>();
                 if (swordSlash.IsAttacking) Destroy(gameObject);
+            }
+            else if (otherObject.name.Contains("Fireball") || otherObject.name.Contains("Explosion"))
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -84,7 +88,7 @@ public class GoblinWeaponScript:MonoBehaviour
 
     public void Throw()
     {
-        var newVelocity = new Vector2(_direction * _speedX*_toughness, 1f * _speedY* _toughness);
+        var newVelocity = new Vector2(_direction * _speedX * _toughness, 1f * _speedY * _toughness);
         _body.velocity = newVelocity;
     }
 
