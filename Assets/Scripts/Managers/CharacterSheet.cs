@@ -34,6 +34,7 @@ public class CharacterSheet : MonoBehaviour
 
     [SerializeField] public bool _invincibleMode = false;
 
+    SoundManager _soundManager;
 
     private int _currentRechargeFactor = 1;
 
@@ -170,6 +171,7 @@ public class CharacterSheet : MonoBehaviour
         _agentState.IsTakingDamage = true;
         _agentState.IsInvincible = true;
         Invoke("TakingDamageEnds", _invincibilityDuration);
+        _soundManager.PlaySound("hurt-player");
     }
 
     internal void GainInexperience()
@@ -191,6 +193,7 @@ public class CharacterSheet : MonoBehaviour
     private void Awake()
     {
         Instantiate(_introScreen);
+        _soundManager = gameObject.GetComponent<SoundManager>();
     }
     private void Update()
     {

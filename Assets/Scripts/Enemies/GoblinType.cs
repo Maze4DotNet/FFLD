@@ -13,6 +13,7 @@ public class GoblinType : MonoBehaviour
     [SerializeField, Range(0f, 100f)] public float _knockBackY; 
     [SerializeField, Range(0f, 1f)] public float _sizeFactor = 0.6f;
     [SerializeField] public bool _hasCrown;
+    SoundManager _soundManager;
 
 
     public GameObject _victoryScreen;
@@ -28,6 +29,11 @@ public class GoblinType : MonoBehaviour
     public GameObject _weapon;
     public WearCrown _wearCrown;
 
+    public void Awake()
+    {
+        _soundManager = gameObject.GetComponent<SoundManager>();
+    }
+
     public void Attack()
     {
         var pos = this.transform.position + new Vector3(_agentState.FacingDirection * 0.5f, 0);
@@ -39,6 +45,7 @@ public class GoblinType : MonoBehaviour
         AgentState agentState = GetComponent<AgentState>();
         weaponScript.Initialize(gameObject, this, _weaponType, agentState.FacingDirection, _damage);
         weaponScript._toughness = Math.Min((int)(3f/_sizeFactor),(int)_size);
+        _soundManager.PlaySound("knife-throw");
         weaponScript.Attack();
     }
 
@@ -101,6 +108,7 @@ public class GoblinType : MonoBehaviour
         string nextAction = "Die";
         if (_hp > 0) nextAction = "Recover";
         Invoke(nextAction, _invincibilityPeriod);
+        _soundManager.PlaySound("hurt-enemy");
     }
 
     private void Die()

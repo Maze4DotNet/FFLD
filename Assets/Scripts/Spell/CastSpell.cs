@@ -10,11 +10,13 @@ internal class CastSpell : EnergyConsumingAction
     Rigidbody2D _body;
     public GameObject _fireball;
     [SerializeField, Range(0f, 1f)] private float _attackDuration = 0.1f;
+    SoundManager _soundManager;
 
     private void Awake()
     {
         _action = () => PerformSpell();
         _actionName = "Spell";
+        _soundManager = gameObject.GetComponent<SoundManager>();
     }
 
     private void FixedUpdate()
@@ -37,6 +39,7 @@ internal class CastSpell : EnergyConsumingAction
 
         _agentState.IsAttacking = true;
         _agentState.IsCasting = true;
+        _soundManager.PlaySound("magic");
         var pos = this.transform.position + new Vector3(_agentState.FacingDirection*0.5f,0);
         GameObject shotFireball = Instantiate(_fireball, pos, Quaternion.identity);
         FireballBehavior behavior = shotFireball.GetComponent<FireballBehavior>();

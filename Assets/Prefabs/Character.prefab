@@ -182,6 +182,7 @@ GameObject:
   - component: {fileID: 3342978714215156359}
   - component: {fileID: 2176712620242481677}
   - component: {fileID: 5740472829865334864}
+  - component: {fileID: 6016508081240819101}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -779,6 +780,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc17b7d42f9841043a2009b1f375014f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6016508081240819101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571249039681519944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c144a3aa5fe1f41b4b8f5fcefcea3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClips:
+  - {fileID: 8300000, guid: 76de3e3180253ac46928df5a53197b66, type: 3}
+  - {fileID: 8300000, guid: cd7e47af8d532fc4cb8fccc0c0d4f859, type: 3}
+  - {fileID: 8300000, guid: 1269b81ec15e88a408b709a5cecd29d8, type: 3}
+  - {fileID: 8300000, guid: 8d5173551cf96094392bafe76ee17c7c, type: 3}
 --- !u!1 &571249040728584711
 GameObject:
   m_ObjectHideFlags: 0
@@ -794,6 +812,7 @@ GameObject:
   - component: {fileID: 7855839078184661871}
   - component: {fileID: 1940535845228233437}
   - component: {fileID: 2807081204773681421}
+  - component: {fileID: 3769400362101548353}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -963,6 +982,20 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.09, y: 0.35}
   m_EdgeRadius: 0
+--- !u!114 &3769400362101548353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 571249040728584711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c144a3aa5fe1f41b4b8f5fcefcea3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClips:
+  - {fileID: 8300000, guid: aa63965fe821b20438873b1212c3764b, type: 3}
 --- !u!1 &1883576980088666540
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,7 +2171,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20.7115, y: -98.0188}
+  m_AnchoredPosition: {x: 20.711548, y: -98.0188}
   m_SizeDelta: {x: 79.6404, y: 67.7417}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &945745217848102573
@@ -3430,7 +3463,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0.09161377, y: -155.2439}
+  m_AnchoredPosition: {x: 0.091552734, y: -155.2439}
   m_SizeDelta: {x: 278.7575, y: 46.7713}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &1240518365735561163
@@ -4312,11 +4345,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2709788412667774273, guid: ce1d146a7d653bb41ad669d106c8d9cd, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 33.9084
+      value: 33.908447
       objectReference: {fileID: 0}
     - target: {fileID: 2709788412667774273, guid: ce1d146a7d653bb41ad669d106c8d9cd, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -29.8707
+      value: -29.870728
       objectReference: {fileID: 0}
     - target: {fileID: 2709788412667774273, guid: ce1d146a7d653bb41ad669d106c8d9cd, type: 3}
       propertyPath: m_ConstrainProportionsScale

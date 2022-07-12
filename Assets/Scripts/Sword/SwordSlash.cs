@@ -18,12 +18,14 @@ internal class SwordSlash : EnergyConsumingAction
     private float _translationFactorX = 0.05f;
     private float _translationFactorY = 0.6f;
     public bool IsAttacking = false;
+    SoundManager _soundManager;
 
 
     private void Awake()
     {
         _actionName = "Slash";
         _action = () => PerformSlash();
+        _soundManager = gameObject.GetComponent<SoundManager>();
     }
 
     private void FixedUpdate()
@@ -55,7 +57,7 @@ internal class SwordSlash : EnergyConsumingAction
         _durationBoi = 0f;
         _currentAttackDirection = 0f;
         Invoke("StartSlash", 0.2f * _attackDuration);
-
+        _soundManager.PlaySound("sword-swing");
     }
 
     private void StartSlash()
