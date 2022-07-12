@@ -7,7 +7,7 @@ public class Jump : EnergyConsumingAction
     [SerializeField, Range(0f, 10f)] private float _jumpHeight = 3f;
     [SerializeField, Range(0f, 5f)] private float _downwardMovementMultiplier = 3f;
     [SerializeField, Range(0f, 5f)] private float _upwardMovementMultiplier = 1.7f;
-    [SerializeField, Range(0f, 5f)] private int _airJumps = 1; 
+    [SerializeField, Range(0f, 5f)] private int _airJumps = 1;
     [SerializeField, Range(0f, 5f)] private int _jumpPhase = 0;
 
 
@@ -59,6 +59,7 @@ public class Jump : EnergyConsumingAction
 
     private void JumpAction()
     {
+        if (!_agentState.IsAirborne) _successful = false;
         if (_jumpPhase >= _airJumps)
         {
             _successful = false;

@@ -130,6 +130,6 @@ public class GoblinType : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_spawnScript._goblorIsHere && _damage < 4) Destroy(gameObject);
+         if (_spawnScript._goblorIsHere && _damage < 4) Destroy(gameObject);
     }
 }
