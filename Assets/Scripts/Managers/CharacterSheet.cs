@@ -9,8 +9,8 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 5)] private int _enduranceLevel = 5;
     [SerializeField, Range(0, 5)] private int _magicLevel = 5;
 
-    [SerializeField, Range(0, 18)] private int _hp = 18;
-    [SerializeField, Range(0, 18)] private int _energy = 18;
+    [SerializeField, Range(0, 24)] private int _hp = 18;
+    [SerializeField, Range(0, 24)] private int _energy = 18;
 
 
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
@@ -34,9 +34,6 @@ public class CharacterSheet : MonoBehaviour
 
     [SerializeField] public bool _invincibleMode = false;
 
-    public int MaxEnergy { get { return 3 * (EnduranceLevel + 1); } }
-
-    public int MaxHP { get { return 3 * (DefenseLevel + 1); } }
 
     private int _currentRechargeFactor = 1;
 
@@ -54,6 +51,9 @@ public class CharacterSheet : MonoBehaviour
 
 
     #region PROPERTIES
+    public int MaxEnergy { get { return 4 * (EnduranceLevel + 1); } }
+
+    public int MaxHP { get { return 4 * (DefenseLevel + 1); } }
     public int AttackLevel
     {
         get { return _attackLevel; }
