@@ -25,7 +25,7 @@ internal class MagicMeter : MonoBehaviour
         //    _manaValue.sprite = _nothing;
         //    return;
         //}
-        _manaValue.transform.localScale = new Vector3(_characterSheet.Mana * 13.77396f/ 100, 3.17f, 3.17f);
+        _manaValue.transform.localScale = new Vector3(_characterSheet.Mana * 18.09945f/ 100, 3.17f, 3.17f);
         _magicMeter.sprite = _magicMeterSprite;
         _manaValue.sprite = _manaValueSprite;
     }
