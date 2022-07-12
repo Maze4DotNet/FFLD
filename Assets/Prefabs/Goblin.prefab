@@ -20,6 +20,7 @@ GameObject:
   - component: {fileID: 1484931872327483244}
   - component: {fileID: 6515711349379316457}
   - component: {fileID: 6845100197947379395}
+  - component: {fileID: 4665169360571315166}
   m_Layer: 0
   m_Name: Goblin
   m_TagString: Enemies
@@ -290,6 +291,21 @@ MonoBehaviour:
   _body: {fileID: 2082567913534353797}
   _weapon: {fileID: 8583766317174271309, guid: d0950579e109de041a54fe2e4cde1806, type: 3}
   _wearCrown: {fileID: 5432149322041055103}
+--- !u!114 &4665169360571315166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1694539550703660138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c144a3aa5fe1f41b4b8f5fcefcea3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioClips:
+  - {fileID: 8300000, guid: 836c30be18fb2e04396141377acb8876, type: 3}
+  - {fileID: 8300000, guid: 33416521b9ba2384ab9d08fa6f3e61e8, type: 3}
 --- !u!1 &5816615683938728734
 GameObject:
   m_ObjectHideFlags: 0
