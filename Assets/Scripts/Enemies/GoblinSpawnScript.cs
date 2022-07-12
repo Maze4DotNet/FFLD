@@ -68,7 +68,7 @@ internal class GoblinSpawnScript : MonoBehaviour
 
     IEnumerator WaitThenDespawn(GameObject spawnedItem)
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(20f);
         Destroy(spawnedItem);
     }
 

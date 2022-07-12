@@ -28,11 +28,13 @@ internal class PlayerHitBox : MonoBehaviour
         var otherObject = collision.gameObject;
         if (otherObject.name.Contains("Heart"))
         {
+            if (_characterSheet.Hp == _characterSheet.MaxHP) return;
             _characterSheet.Heal();
             Destroy(otherObject);
         }
         else if (otherObject.name.Contains("Energy"))
         {
+            if (_characterSheet.Energy == _characterSheet.MaxEnergy) return;
             _characterSheet.RestoreEnergy();
             Destroy(otherObject);
         }

@@ -144,7 +144,7 @@ public class CharacterSheet : MonoBehaviour
     {
         if (_hp < MaxHP && !_agentState.IsDead)
         {
-            _hp += 3;
+            _hp += 4;
         }
     }
     internal void TakeDamage(GameObject otherObject, int damage)
