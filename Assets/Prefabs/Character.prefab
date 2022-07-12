@@ -508,6 +508,7 @@ MonoBehaviour:
   _magicLevel: 5
   _hp: 24
   _energy: 24
+  _healingFactor: 4
   _energyRechargeTime: 0.1
   _rechargeCounter: 10
   _rechargeFactor: 1
