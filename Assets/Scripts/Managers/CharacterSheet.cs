@@ -9,8 +9,11 @@ public class CharacterSheet : MonoBehaviour
     [SerializeField, Range(0, 5)] private int _enduranceLevel = 5;
     [SerializeField, Range(0, 5)] private int _magicLevel = 5;
 
+
     [SerializeField, Range(0, 24)] private int _hp = 18;
     [SerializeField, Range(0, 24)] private int _energy = 18;
+
+    [SerializeField, Range(0, 24)] private int _healingFactor = 0;
 
 
     [SerializeField, Range(0, 3)] private float _energyRechargeTime;
@@ -145,13 +148,14 @@ public class CharacterSheet : MonoBehaviour
     {
         if (_hp < MaxHP && !_agentState.IsDead)
         {
-            _hp += 4;
+            _hp += _healingFactor;
         }
     }
     internal void TakeDamage(GameObject otherObject, int damage)
     {
         if (_invincibleMode || _agentState.IsInvincible) return;
         _hp -= damage;
+       
         if (_hp <= 0)
         {
             _agentState.Die();

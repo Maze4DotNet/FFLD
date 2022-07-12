@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class DownGradeManager : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class DownGradeManager : MonoBehaviour
     {
         if (_characterSheet.DefenseLevel > 0 && _canChoose)
         {
+            _characterSheet.Hp = Math.Max(_characterSheet.Hp - 4, 1);
             _characterSheet.DefenseLevel--;
             _canChoose = false; _canClose = true;
         }

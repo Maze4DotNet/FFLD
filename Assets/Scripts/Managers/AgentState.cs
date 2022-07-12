@@ -87,6 +87,8 @@ public class AgentState : MonoBehaviour
         IsTakingDamage = false;
         IsCelebrating = false;
         IsTired = false;
+        var box = GetComponent<BoxCollider2D>();
+        box.GetComponent<BoxCollider2D>().enabled = false;
         StartCoroutine(WaitThenDeathScren());
     }
 
