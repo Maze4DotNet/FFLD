@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public abstract class EnergyConsumingAction : MonoBehaviour
 {
@@ -18,7 +19,10 @@ public abstract class EnergyConsumingAction : MonoBehaviour
 
     internal void Update()
     {
-        _desiredAction |= Input.GetButtonDown(_actionName);
+        // This bool make sure the sword does not activate if you click on a menu button.
+        bool onUi = true;
+        try { onUi = !EventSystem.current.IsPointerOverGameObject(); } catch (Exception ex) { }
+        _desiredAction |= (Input.GetButtonDown(_actionName)) && onUi;
     }
 
     internal void FixedUpdate()
