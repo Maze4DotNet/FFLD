@@ -60,9 +60,15 @@ internal class GoblinSpawnScript : MonoBehaviour
     private void SpawnPickup()
     {
         var spawn = GetRandomSpawn();
+        SpawnPickup(spawn);
+        StartCoroutine(WaitThenSpawn());
+    }
+
+    private void SpawnPickup(Vector2 position)
+    {
         GameObject obj = _random.Next() % 3 == 0 ? _energy : _heart;
 
-        GameObject spawnedItem = Instantiate(obj, spawn, Quaternion.identity);
+        GameObject spawnedItem = Instantiate(obj, position, Quaternion.identity);
         StartCoroutine(WaitThenDespawn(spawnedItem));
     }
 
@@ -118,9 +124,10 @@ internal class GoblinSpawnScript : MonoBehaviour
         _goblinsEverSpawned++;
     }
 
-    internal void Died()
+    internal void Died(Vector2 position, int damage)
     {
         _nrOfGoblins--;
-        SpawnPickup();
+        var roll = _random.Next(6);
+        if (roll == 0 || damage > 1) SpawnPickup(position);
     }
 }
