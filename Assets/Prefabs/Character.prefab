@@ -508,8 +508,8 @@ MonoBehaviour:
   _magicLevel: 5
   _hp: 24
   _energy: 24
-  _healingFactor: 4
-  _energyRechargeTime: 0.1
+  _healingFactor: 1
+  _energyRechargeTime: 0.15
   _rechargeCounter: 10
   _rechargeFactor: 1
   _rechargeFactorTired: 1
@@ -765,7 +765,7 @@ MonoBehaviour:
   - {x: 10, y: -5}
   - {x: -10, y: -5}
   - {x: -10, y: 0}
-  _heartSpawnTime: 5
+  _heartSpawnTime: 10
   _initialEnergySpawnerTimer: 5
   _heart: {fileID: 1729341432570024172, guid: 80a4ffe0874e91645928c0519a9cafc7, type: 3}
   _energy: {fileID: 1729341432570024172, guid: 9a4762cb2511d51488a326d35d384381, type: 3}

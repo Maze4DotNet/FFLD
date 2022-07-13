@@ -113,7 +113,7 @@ public class GoblinType : MonoBehaviour
 
     private void Die()
     {
-        _spawnScript.Died();
+        _spawnScript.Died(transform.position, _damage);
         if (_damage == 4)
         {
             Instantiate(_victoryScreen);
